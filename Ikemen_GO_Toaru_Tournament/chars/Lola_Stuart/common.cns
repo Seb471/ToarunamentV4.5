@@ -319,17 +319,6 @@ physics = S
 anim = 100
 sprpriority = 1
 
-[State 115,SE]
-type=PlaySnd
-trigger1=time=0
-trigger1 = random%2=0
-value=100,0
-
-[State 115,SE]
-type=PlaySnd
-trigger1=AnimElemtime(1)=0
-value=1,32
-
 [State 100, 1]
 type = VelSet
 trigger1 = 1
@@ -455,7 +444,7 @@ sprpriority=2
 
 [State 110,SE]
 type=PlaySnd
-trigger1=AnimElemtime(1)=0
+trigger1=AnimElemtime(2)=0
 value=1,32
 
 [State -1,VelSet]

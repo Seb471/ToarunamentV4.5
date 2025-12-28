@@ -989,12 +989,6 @@ value = 5050
 	anim     = 240
 	sprpriority = 2
 
-	[State 6500,Snd2]
-		Type=playSnd
-		Trigger1=AnimElemTime(1)=0
-		value=2,6
-		channel=0
-
 
 [State 0, ChangeAnim]
 type = ChangeAnim

@@ -2240,12 +2240,6 @@ sprpriority = 10
 	[State 6500,Snd2]
 		Type=playSnd
 		Trigger1=AnimElemTime(1)=0
-		value=2,6
-		channel=0
-
-	[State 6500,Snd2]
-		Type=playSnd
-		Trigger1=AnimElemTime(1)=0
 		value=30,11
 		channel=-1
 

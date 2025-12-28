@@ -1986,8 +1986,8 @@ p1sprpriority = 1     ;Draw p1's sprite in front of p2
                       ;p2's sprite priority is set to 0 by default
 p1facing = 1
 p2facing = 1          ;Force p2 to face KFM
-p1stateno = cond(command="holdback",811,810)       ;On success, KFM changes to state 810
-p2stateno = cond(command="holdback",821,820)       ;If hit, p2 changes to state 820 in KFM's cns
+p1stateno = 810       ;On success, KFM changes to state 810
+p2stateno = 820       ;If hit, p2 changes to state 820 in KFM's cns
 guard.dist = 0        ;This prevents p2 from going into a guard state if close
 fall = 1              ;Force p2 into falling down
 persistent=0
@@ -2006,136 +2006,7 @@ Trigger1 = AnimTime = 0
 value = 0
 ctrl = 1
 
-;---------------------------------------------------------------------------
-; Teched Going Back - attacker state
-[Statedef 805]
-type    = S
-movetype= H
-physics = N
-velset = 0,0
-
-[State 0, StopSnd]
-type = StopSnd
-trigger1 =  time = 0
-channel = -1
-;ignorehitpause = 
-;persistent = 
-
-[State 0, TargetState]; faz o techador entrar no state do tech
-type = TargetState
-trigger1 = time = 0
-value = 806
-
-[State 200, PlaySnd];som de grito(?)
-type = PlaySnd
-trigger1 = time = 0
-value = 0,14
-
-	[State 3501,Hit Explod]
-		Type=Explod
-		Trigger1=time = 0
-		Anim=20026
-		Pos=0,0
-		bindTime=-1
-		PosType=back
-		sprPriority=-1
-		SuperMoveTime=30
-		PauseMoveTime=30
-		Persistent=0
- 		ignorehitpause = 1
-
-	[State 3000,????]
-		Type=envColor
-		Trigger1= time = 0
-		value=0,0,0
-		Time=13
-		under=1
-		Persistent=0
- 		ignorehitpause = 1
-
-[State 150, 1];anima?o
-type = ChangeAnim
-trigger1 = 1
-value = 120
-
-[State 0, VelSet];pushback
-type = VelSet
-trigger1 = time = 9
-x = -6
-
-[State 0, VelSet];pushback
-type = VelSet
-trigger1 = time = 14
-x = -3
-
-[State 0, VelSet];pushback
-type = VelSet
-trigger1 = time = 17
-x = -1.5
-
-[State 0, VelSet];pushback
-type = VelSet
-trigger1 = time = 21
-x = 0
-
-[State 0, ChangeState]
-type = selfState
-trigger1 = time = 30
-value = 0
-ctrl = 1
-
-;==================================================================================
-; Throw Escape - victim state
-[Statedef 806]
-type    = S                      ;State-type: S-stand, C-crouch, A-air, L-liedown
-movetype= A                      ;Move-type: A-attack, I-idle, H-gethit
-physics = S                      ;Physics: S-stand, C-crouch, A-air
-velset = 0,0                     ;Set velocity (x,y) (Def: no change)
-ctrl = 0                         ;Set ctrl (Def: no change)
-poweradd = 0                    ;Power to add (Def: 0)
-sprpriority = 2                  ;Set p1's sprite layering priority to 2 (in front)
-
-[State 0, ChangeAnim2]
-type = ChangeAnim
-trigger1 = 1
-value = 120
-;elem = 1
-;ignorehitpause = 
-;persistent = 
-
-
-[State 0, PosSet];fique no ch? agora
-type = PosSet
-trigger1 = time = 0
-y = 0
-
-[State 0, VelSet];pushback
-type = VelSet
-trigger1 = time = 9
-x = -6
-
-[State 0, VelSet];pushback
-type = VelSet
-trigger1 = time = 14
-x = -3
-
-[State 0, VelSet];pushback
-type = VelSet
-trigger1 = time = 17
-x = -1.5
-
-[State 0, VelSet];pushback
-type = VelSet
-trigger1 = time = 21
-x = 0
-
-[State 200, 3]; vai pro state 0 e faz tudo voltar ao normal (n?)
-type = selfState
-trigger1 = time = 33
-value = 0
-ctrl = 1
-
-;Forward Throw
+;Throw Success
 [Statedef 810]
 type    = S
 movetype= A
@@ -2300,17 +2171,6 @@ ignorehitpause = 1
 		ignorehitpause=1
 		persistent=0
 
-[State 0, ChangeState]; confere se o alvo apertou o bot? pra techar, se sim, te leva pro state de tomar o tech
-type = ChangeState
-triggerall = NumTarget;()
-triggerall = time <= 8
-trigger1 = target,AILevel=0
-trigger1 = target, command = "x" && (target, command = "holdfwd" || target,command = "holdback")
-trigger2 = target,AILevel>0
-trigger2 = random <=floor(AILevel*100/1.5)
-value = 805
-ctrl = 0
-
 
 	[State 810, ??????]
 		type = ChangeState
@@ -2318,173 +2178,7 @@ ctrl = 0
 		value = 0
 		ctrl = 1
 
-;=================================================================
-;Back throw
-[Statedef 811]
-Type    = S
-MoveType= A
-Physics = S
-velset = 0,0
-Anim = 811
-
-[State 810, ??????]
-		type = playerpush
-		trigger1 = anim=811
-		value=0
-		ignorehitpause=1
-		persistent=1
-
-[State 0, VelSet]
-type = VelAdd
-trigger1 = time = 0
-x = 12
-ignorehitpause = 1
-persistent = 0
-
-[State 0, TargetBind]
-type = null
-trigger1 = time=0
-time = 1
-pos = 65,-20
-ignorehitpause = 1
-;persistent = 
-
-[State ]
-Type = NotHitBy
-Trigger1 = 1
-Value = SAC
-Time = 1
-
-[State 810, ??????]
-		type = Changeanim
-		triggerall = anim = 811
-		trigger1 = animtime = 0
-		value = 812
-		ignorehitpause=1
-		persistent=0
-
-[State 0, Turn]
-type = Turn
-triggerall = anim = 812
-trigger1 = animelemtime(1) = 0
-;ignorehitpause = 
-;persistent = 
-
-[State 0, PlaySnd]
-type = PlaySnd
-Trigger1 =  animelem = 5 && anim=812
-value = S2100,3
-channel = 0
-
-
-
-[State 240]
-type = HitDef
-Trigger1 =  animelem = 5 && anim=812
-attr = A, NT
-AnimType  = Hard
-Damage    = Ceil(65* Fvar(3)), 20   
-HitFlag = MAF
-GuardFlag = MA
-PauseTime = 3,11
-priority = 3, Hit 
-Guard.PauseTime = 10,9
-HitSound=S800,35
-GuardSound=S1,0
-sparkno = s6015                  ;Spark anim no (Def: set above)
-Guard.SparkNo=S6105
-Sparkxy=-10,floor(-95*const(Size.yScale))
-Ground.Type = High
-Ground.SlideTime = 26
-Ground.HitTime  = 26
-Guard.HitTime  = 23
-Ground.velocity=-4.50
-AirGuard.velocity=-4.50,.8
-ground.cornerpush.veloff = -fvar(11)*0.555
-Air.cornerpush.veloff= -fvar(11)*0.555
-EnvShake.Time = 9
-EnvShake.Ampl = 8
-EnvShake.Freq = 90
-YAccel = .5
-ID = 5600
-Guard.Kill = 1
-fall=1
-Air.Fall = 1
-Fall.Recover = 0
-Fall.RecoverTime = 38
-getpower = 20,10
-GivePower = 20,10
-
-[State ]
-Type = Width
-trigger1=movecontact
-Edge=40,0
-ignorehitpause=1
-
-
-	[State -1,????,???,?????]
-		type = Varset
-		Trigger1=animelemtime(5)>=0 && anim=812
-		
-		fvar(0)= fvar(0)*0.85
-		persistent = 0
- 		ignorehitpause = 1
-[State 200 ??????????]
-		type = Varadd
-		Trigger1=animelemtime(5)>=0 && anim=812
-		fVar(11) = 8
-		persistent = 0
- 		ignorehitpause = 1
-
-
-
-[State 200,V1=1]
-		Type=VarSet
-		Trigger1=animelemtime(5)>=0 && anim=812
-		;trigger1=numtarget(1060)
-		var(1)=1
-		ignorehitpause = 1
-
-
-;Wall Bounce
-[State -2,????]
-		type = TargetFacing
-		;trigger1= var(6)<=2 ;ComboLimiter
-		trigger1 = numTarget(5600)
-		;trigger1 = Target(1150),statetype = A
-		trigger1 = movehit =1
-		trigger1 = enemy, stateno!=[5599,5603]
-		ignorehitpause=1
-		value = -1
-[State -2,??????]
-		type = TargetState
-			;trigger1= var(6)<=2 ;ComboLimiter
-		trigger1 = numTarget(5600)
-		;trigger1 = Target(1150),statetype = A
-		trigger1 = movehit =1
-		trigger1 = enemy, stateno!=[5599,5603]
-		value = 5599
-		persistent = 0
-		ignorehitpause=1
-
-[State 0, ChangeState]; confere se o alvo apertou o bot? pra techar, se sim, te leva pro state de tomar o tech
-type = ChangeState
-triggerall = NumTarget;()
-triggerall = time <= 8
-trigger1 = target,AILevel=0
-trigger1 = target, command = "x" && (target, command = "holdfwd" || target,command = "holdback")
-trigger2 = target,AILevel>0
-trigger2 = random <=floor(AILevel*100/1.5)
-value = 805
-ctrl = 0
-
-[State ]
-Type = ChangeState
-Trigger1 = AnimTime = 0 && anim =812
-Value = 0
-Ctrl = 1
-
-;Forward Thrown
+;Thrown
 [Statedef 820]
 type    = A
 movetype= H
@@ -2575,34 +2269,6 @@ Value = 5100
 		trigger1=anim=820
 		trigger1=alive
 		value=5120
-
-;Back Thrown
-[Statedef 821]
-type    = A
-movetype= H
-physics = N
-velset = 0,0
-sprpriority=-1
-
-[State 0, PosSet]
-type = PosAdd
-trigger1 = time = 0
-x = -30
-;ignorehitpause = 
-;persistent = 
-
-[State 0, PosSet]
-type = PosSet
-trigger1 = time = 0
-y = -50
-;ignorehitpause = 
-;persistent = 
-
-
-	[State 820, ????????]
-		type = ChangeAnim2
-		trigger1 = Time = 0
-		value = 820
 
 ;---------------------------------------------------------------------------
 ;”½ŽË•ÏX

@@ -830,7 +830,6 @@ value = 100
 trigger1 = command = "FF"
 trigger1 = statetype !=A
 trigger1 = ctrl
-trigger1 = stateno!=100
 
 [State -1,AirDash];‹ó’†ƒ_ƒbƒVƒ…
 	Type=ChangeState
@@ -1012,11 +1011,15 @@ anim=ifelse((stateno = [210,499]),5,1)
 [State -1, 6x]
 Type = ChangeState
 value = 800
-triggerall = command = "x"
-triggerall = statetype != A
-triggerall = ctrl
-trigger1 = command = "holdfwd"
-trigger2 = command = "holdback"
+	TriggerAll=Alive!=0
+	TriggerAll=StateType!=A
+	TriggerAll=Ctrl
+	TriggerAll=command="x"
+	TriggerAll=command="holdfwd"
+	TriggerAll=StateNo!=100
+	Trigger1=Ctrl
+	Trigger1=enemynear,StateType=S||enemynear,StateType=C
+	Trigger1=enemynear,MoveType!=H
 
 
 [State -1, 5x]

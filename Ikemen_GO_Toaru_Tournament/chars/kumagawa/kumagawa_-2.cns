@@ -1455,10 +1455,6 @@ Trans = add1
 
 [State -2, ˆÃ•c‘œ]
 Type = AfterImageTime
-TriggerAll = var(49) != -1;
-triggerall = var(12)
-triggerall = var(13)
-TriggerAll = Life < 0.3*LifeMax
 trigger1 = Alive
 Time = 2
 Ignorehitpause = 1

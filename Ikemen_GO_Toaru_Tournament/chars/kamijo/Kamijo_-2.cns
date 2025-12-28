@@ -70,7 +70,7 @@ text = "fvar(0)=%f,fvar(11)=%f,var(8)=%d,var(2)=%d \n"
 params = fvar(0),fvar(11),var(8),var(2)
 
 [State -2, クリップボード（追加専用）]
-	type = null
+	type = AppendToClipboard
 	TriggerAll = !IsHelper
 	trigger1 = 1
 	text = "Position X=%d,Y=%d, Velocity X=%f,Y=%f, Hit=%d \n"
@@ -310,7 +310,7 @@ IgnoreHitPause = 1
 ;カウンターリードアップ
 [State 0, PalFX]
 type = PalFX
-triggerall = var(2)=3 || var(2) = -1
+triggerall = var(2)=3
 trigger1 = StateNo = 1125 && var(1)
 trigger2 = StateNo = 1252 && var(1)
 trigger3 = StateNo = 1600 && var(1)
@@ -324,11 +324,7 @@ ignorehitpause = 1
 [State 0, PalFX]
 type = PalFX
 triggerall = var(2)=4
-triggerall = StateNo = 230 && var(1)
-trigger1 = prevStateNo = 1125
-trigger2 = prevStateNo = 1252
-trigger3 = prevStateNo = 1600
-trigger4 = prevStateNo = 1650
+trigger1 = StateNo = 230 && var(1)
 time = 10
 add = 0,64,128
 ignorehitpause = 1
@@ -337,17 +333,13 @@ persistent = 0
 [State -2, カウンターアタックボイス]
 	type = PlaySnd
 	triggerall = var(2)=4
-	triggerall = StateNo = 230 && var(1)
-	trigger1 = prevStateNo = 1125
-	trigger2 = prevStateNo = 1252
-	trigger3 = prevStateNo = 1600
-	trigger4 = prevStateNo = 1650
+	trigger1 = StateNo = 230 && var(1)
 	value = 1, 14
 	ignorehitpause = 1
 
 [State -2]
  	type = Varset
-	triggerall = var(2)=3 || var(2) = -1
+	triggerall = var(2)=3
 	trigger1 = StateNo = 1125 && var(1)
 	trigger2 = StateNo = 1252 && var(1)
 	trigger3 = StateNo = 1600 && var(1)
@@ -358,24 +350,19 @@ persistent = 0
 [State -2]
  	type = Varset
  	triggerall = var(2) = 4
-	triggerall = StateNo = 230 && var(1)
-	trigger1 = prevStateNo = 1125
-	trigger2 = prevStateNo = 1252
-	trigger3 = prevStateNo = 1600
-	trigger4 = prevStateNo = 1650
+	trigger1 = StateNo = 230 && var(1)
 	var(2) = 5
 	ignorehitpause = 1
 
 [State -2]
- 	type = varset
+ 	type = null
 	triggerall = var(2)=4
-	trigger1 = StateNo != 1125 && var(1)
-	trigger1 = StateNo != 1252 && var(1)
-	trigger1 = StateNo != 1600 && var(1)
-	trigger1 = StateNo != 1650 && var(1)
-	trigger1 = StateNo != 230 && var(1)
-	v = 2
-	value = -1
+	trigger1 = !(StateNo = 1125 && var(1))
+	trigger1 = !(StateNo = 1252 && var(1))
+	trigger1 = !(StateNo = 1600 && var(1))
+	trigger1 = !(StateNo = 1650 && var(1))
+	trigger1 = !(StateNo = 230 && var(1))
+	var(2) = 3
 	ignorehitpause = 1
 
 

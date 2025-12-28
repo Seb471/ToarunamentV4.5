@@ -1209,7 +1209,7 @@ trigger1 = ctrl
 	Trigger1=Ctrl
 [State -1,Dodge];Dodge
 	Type=ChangeState
-	value=900
+	value=800
 	TriggerAll=!IsHelper
 	TriggerAll=Alive!=0
 	TriggerAll=StateType!=A

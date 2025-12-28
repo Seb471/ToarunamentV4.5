@@ -804,7 +804,7 @@ trigger7 = ctrl
 type = ChangeState
 value = 6000
 triggerall=!ishelper
-triggerall = stateno!=[800,814]
+triggerall = stateno!=805 && stateno!=810 && stateno!=812 && stateno!=814
 triggerall = stateno!=6000
 triggerall = command = "x" && command = "holddown" && cond(var(21)=0,power>=500,1)
 triggerall = movetype!=H
@@ -824,7 +824,7 @@ trigger10= stateno=[4200,4201]
 type = ChangeState
 value = ifelse(statetype!=A,4000,4200)
 triggerall = stateno!=6000
-triggerall = stateno!=[800,814]
+triggerall = stateno!=805 && stateno!=810 && stateno!=812 && stateno!=814
 triggerall = stateno!=[920,930]
 triggerall = stateno!=1503 && stateno!=1513
 triggerall = stateno!=1601 && stateno!=1612 && stateno!=1613
@@ -842,7 +842,7 @@ trigger1 = command = "y" && command = "holddown" && var(20)!=-1 && power>0
 type = ChangeState
 value = ifelse(statetype!=A,4030,4230)
 triggerall = stateno!=6000
-triggerall = stateno!=[800,814]
+triggerall = stateno!=805 && stateno!=810 && stateno!=812 && stateno!=814
 triggerall = stateno!=[920,930]
 triggerall = stateno!=1500 && stateno!=1510
 triggerall = stateno!=1600 && stateno!=1610 && stateno!=1611
@@ -861,7 +861,7 @@ trigger1 = var(20)=-1
 type = ChangeState
 value = ifelse(statetype!=A,1030,1230)
 triggerall = stateno!=6000
-triggerall = stateno!=[800,814]
+triggerall = stateno!=805 && stateno!=810 && stateno!=812 && stateno!=814
 triggerall = stateno!=[920,930]
 triggerall = stateno!=1503 && stateno!=1513
 triggerall = stateno!=1601 && stateno!=1612 && stateno!=1613
@@ -878,7 +878,7 @@ trigger1 = var(20)=1
 type = ChangeState
 value = ifelse(statetype!=A,1000,1200)
 triggerall = stateno!=6000
-triggerall = stateno!=[800,814]
+triggerall = stateno!=805 && stateno!=810 && stateno!=812 && stateno!=814
 triggerall = stateno!=[920,930]
 triggerall = stateno!=1500 && stateno!=1510
 triggerall = stateno!=1600 && stateno!=1610 && stateno!=1611
@@ -897,7 +897,7 @@ trigger1 = var(20)!=1
 type = ChangeState
 value = ifelse(statetype!=A,2030,2230)
 triggerall = stateno!=6000
-triggerall = stateno!=[800,814]
+triggerall = stateno!=805 && stateno!=810 && stateno!=812 && stateno!=814
 triggerall = stateno!=[920,930]
 triggerall =!((stateno=[2500,2510]) && var(1)=0)
 triggerall = stateno!=2600
@@ -913,7 +913,7 @@ trigger1 = var(20)=2
 type = ChangeState
 value = ifelse(statetype!=A,2000,2200)
 triggerall = stateno!=6000
-triggerall = stateno!=[800,814]
+triggerall = stateno!=805 && stateno!=810 && stateno!=812 && stateno!=814
 triggerall = stateno!=[920,930]
 triggerall = stateno!=1500 && stateno!=1510
 triggerall = stateno!=1600 && stateno!=1610 && stateno!=1611
@@ -947,7 +947,7 @@ triggerall = command = "FF" && (var(20)=1 || (var(20)=-1 && command = "hold_z"))
 triggerall = movetype!=H
 triggerall=!ishelper
 trigger1 = stateno!=6000
-trigger1 = stateno!=[800,814]
+trigger1 = stateno!=805 && stateno!=810 && stateno!=812 && stateno!=814
 trigger1 = stateno!=[920,930]
 trigger1 = stateno!=[1500,1520]
 trigger1 = stateno!=[1600,1650]
@@ -976,7 +976,7 @@ triggerall = command = "BB" && (var(20)=1 || (var(20)=-1 && command = "hold_z"))
 triggerall = movetype!=H
 triggerall=!ishelper
 trigger1 = stateno!=6000
-trigger1 = stateno!=[800,814]
+trigger1 = stateno!=805 && stateno!=810 && stateno!=812 && stateno!=814
 trigger1 = stateno!=[920,930]
 trigger1 = stateno!=[1500,1520]
 trigger1 = stateno!=[1600,1650]

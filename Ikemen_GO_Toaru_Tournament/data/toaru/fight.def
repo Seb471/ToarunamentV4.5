@@ -757,7 +757,7 @@ p1.top.scale = 0.5,0.25
 p1.range.x = 292.5,47.5;-580,-156
 
 ;Player 2
-p2.pos    = 640,8.75
+p2.pos    = 640,0
 
 ;lifebar bg
 p2.bg0.anim = 4
@@ -1733,7 +1733,7 @@ p7.face.offset = 5,5
 p7.face.palfxshare = 1
 
 ;Player 8
-p8.pos = 640,140;996,8
+p8.pos = 640,80;996,8
 p8.spacing = 0, 30;-40,0;
 
 p8.bg.spr = 99,0
@@ -1864,7 +1864,7 @@ p7.face.offset = 5,5
 p7.face.palfxshare = 1
 
 ;Player 8
-p8.pos = 640,140;996,8
+p8.pos = 640,80;996,8
 p8.spacing = 0, 30;-40,0;
 
 p8.bg.spr = 99,0
