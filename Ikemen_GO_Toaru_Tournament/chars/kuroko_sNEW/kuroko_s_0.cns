@@ -2680,6 +2680,19 @@ Anim = 811
 sprpriority=4
 
 
+
+[State 0, ChangeState]; confere se o alvo apertou o bot? pra techar, se sim, te leva pro state de tomar o tech
+type = ChangeState
+triggerall = NumTarget;()
+triggerall = time <= 8
+trigger1 = target,AILevel=0
+trigger1 = target, command = "x" && (target, command = "holdfwd" || target,command = "holdback")
+trigger2 = target,AILevel>0
+trigger2 = random <=floor(AILevel*100/1.5)
+value = 805
+ctrl = 0
+
+
 [State 810,Snd2]
 Type=playSnd
 Trigger1=AnimElemTime(1)=0
@@ -2851,17 +2864,6 @@ Trigger1 = animelemtime(8)>=0
 V =1
 Value = 1;Cond(Var(57)/10%10=4,814,813)
 ignorehitpause=1
-
-[State 0, ChangeState]; confere se o alvo apertou o bot? pra techar, se sim, te leva pro state de tomar o tech
-type = ChangeState
-triggerall = NumTarget;()
-triggerall = time <= 8
-trigger1 = target,AILevel=0
-trigger1 = target, command = "x" && (target, command = "holdfwd" || target,command = "holdback")
-trigger2 = target,AILevel>0
-trigger2 = random <=floor(AILevel*100/1.5)
-value = 805
-ctrl = 0
 
 [State ]
 Type = ChangeState

@@ -305,40 +305,6 @@ name = "holdup" ;Required (do not remove)
 command = /$U
 time = 1
 
-;Custom code
-
-;adv-guard
-
-[Command]
-name = "pushblock"
-command = F, a+b+c
-time = 10
-
-[Command]
-name = "pushblock"
-command = F, x
-time = 10
-
-[Command]
-name = "guardcancel"
-command = ~F, D, DF, a+b+c
-time = 18
-
-[Command]
-name = "guardcancel"
-command = ~F, D, DF, ~a+b+c
-time = 18
-
-[Command]
-name = "guardcancel"
-command = ~F, D, DF, x
-time = 18
-
-[Command]
-name = "guardcancel"
-command = ~F, D, DF, ~x
-time = 18
-
 ;-| Release Button |---------------------------------------------------------
 
 [Statedef -1]

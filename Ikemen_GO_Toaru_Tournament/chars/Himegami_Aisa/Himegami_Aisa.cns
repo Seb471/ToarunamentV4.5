@@ -29,12 +29,12 @@ ground.back      = 10      ;地上にいる時の「後方の物理的な幅」
 ground.front     = 10      ;地上にいる時の「前方の物理的な幅」
 air.back         = 10      ;空中にいる時の「後方の物理的な幅」
 air.front        = 10      ;空中にいる時の「前方の物理的な幅」
-height           = 50      ;キャラの物理的な高さ（高いほど相手は飛び越しにくくなる）
+height           = 30      ;キャラの物理的な高さ（高いほど相手は飛び越しにくくなる）
 attack.dist      = 120     ;相手がガード態勢に入る最低の距離
 proj.attack.dist = 150      ;自分の「Projectile」に対して相手がガード態勢に入る最低の距離
 proj.doscale     = 0       ;xscaleとyscaleを「Projectile」にも影響させるか否か（0=させない・1=させる）
-head.pos         = 4,-85  ;キャラの標準の頭の座標（Bind系で適用される）
-mid.pos          = 6,-55  ;キャラの標準の体中心の座標（Bind系で適用される）
+head.pos         = -5,-50  ;キャラの標準の頭の座標（Bind系で適用される）
+mid.pos          = -5,-20  ;キャラの標準の体中心の座標（Bind系で適用される）
 shadowoffset     = 0       ;影のＹ軸方向の位置座標
 draw.offset      = 0,0     ;キャラの表示座標（Ｘ軸,Ｙ軸）
 
@@ -81,11 +81,6 @@ crouch.friction = .70      ;しゃがんでいる時の摩擦係数（ステートのPhysicsが「C」
 		ctrl = 0
 		anim = 170
 		velset = 0,0
-
-	[State 3050, 音を鳴らす]
-		type = PlaySnd
-		trigger1 = time = 0
-		value = 170, 0
 
 	[State 170, 無敵]
 		type = NotHitBy

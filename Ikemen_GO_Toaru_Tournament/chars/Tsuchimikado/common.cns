@@ -2596,7 +2596,7 @@ trigger1 = SelfAnimExist(5500)
 value = 5500
 
 ;---------------------------------------------------------------------------
-; getting wall bounced
+; gettung wall bounced
 [Statedef 5599];it's put to 5599 because 5600 is used for switch
 Type     = A
 MoveType = H

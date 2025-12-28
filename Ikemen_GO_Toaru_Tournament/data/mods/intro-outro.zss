@@ -57,11 +57,9 @@ if !map(io_turnstemp) && roundno != 1 && roundstate = 1 && teamleader < 3 {
 
 	# Centers camera on the winner or loser during winposes.
 Ignorehitpause if ((map(io_win_cam) = 1 && (winko||wintime)) || (map(io_win_cam) = 2 && (loseko||losetime))) && map(io_win_zoo) >= 1 && roundstate = 4 && teamleader < 3 {
-	zoom{
-		scale: gamewidth/const240p(320/map(io_win_zoo));
-		lag: 0.95; 
-		pos:(pos x)/(gamewidth/const240p(320/map(io_win_zoo)))*camerazoom, (-20*(map(io_win_zoo)-1))
-		}
+	zoom{scale:gamewidth/const240p(320/map(io_win_zoo)); 
+	lag:0.95; 
+	pos:(pos x)/(gamewidth/const240p(320/map(io_win_zoo)))*camerazoom, (-20*(map(io_win_zoo)-1))}
 	}
 
 [Statedef -4]

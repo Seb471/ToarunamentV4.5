@@ -509,7 +509,7 @@ LoopStart
 710,11, 0,5, 4, , A
 
 ; Dodge
-[Begin Action 900]
+[Begin Action 800]
 3170,1, 0,0, 10
 LoopStart
 3170,2, 0,0, 10
@@ -521,7 +521,7 @@ LoopStart
 3170,2, 0,0, 10
 
 ; Splat
-[Begin Action 910]
+[Begin Action 810]
 3170,3, 0,0, 100
 -1,0, 0,0, 0
 

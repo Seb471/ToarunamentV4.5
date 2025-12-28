@@ -1213,24 +1213,17 @@ value = 0
 ctrl = 1
 
 
-[Statedef 900, Dodge]
+[Statedef 800, Dodge]
 type     = S
 movetype = I
 physics  = S
 ctrl     = 0
 velset   = 0,0
-anim     = 900
+anim     = 800
 sprpriority = 0
 
-	[State 6500,Snd2]
-		Type=playSnd
-		trigger1 = random%2=0
-		Trigger1=AnimElemTime(1)=0 ;&& random%2=0
-		value=810,0
-		channel=0
 
-
-[State 900, AfterImage]
+[State 800, AfterImage]
 type = AfterImage
 trigger1 = animelem =1
 trigger2 = animelem =4
@@ -1239,10 +1232,10 @@ time = 20
 length = 20
 
 
-[State 900, Splat]
+[State 800, Splat]
 type = ChangeState
 trigger1 = animelem = 6
-value = 910
+value = 810
 ctrl = 0
 
 [State 800, End]
@@ -1251,13 +1244,13 @@ trigger1 = command != "hold_x"
 value = 0
 ctrl = 1
 
-[Statedef 910, Splat]
+[Statedef 810, Splat]
 type     = S
 movetype = I
 physics  = S
 ctrl     = 0
 velset   = 0,0
-anim     = 910
+anim     = 810
 sprpriority = 1
 
 
