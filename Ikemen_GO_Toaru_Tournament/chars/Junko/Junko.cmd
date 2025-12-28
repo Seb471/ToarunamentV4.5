@@ -1223,27 +1223,16 @@ trigger3=stateno=700
 	trigger2=var(20)=2
 	trigger2=stateno!=[3000,3999]
 
-;Forward Throw
-[State -1]
+;---------------------------------------------------------------------------
+;Throw
+[State -1, Throw]
 Type = ChangeState
-value = 800
-	TriggerAll=Alive!=0
-	TriggerAll = StateType != A
-	TriggerAll=command="x"
-	TriggerAll=command="holdfwd"
-	Trigger1=Ctrl
-	trigger2=stateno=[100,101]
-
-;Back Throw
-[State -1]
-Type = ChangeState
-value = 900
-	TriggerAll=Alive!=0
-	TriggerAll = StateType != A
-	TriggerAll=command="x"
-	TriggerAll=command="holdback"
-	Trigger1=Ctrl
-	trigger2=stateno=[100,101]
+Value = 800
+triggerall = command = "x"
+triggerall = statetype != A
+triggerall = command = "holdfwd" || command = "holdback" 
+trigger1 = ctrl
+trigger2 = stateno=[100,101]
 
 ;---------------------------------------------------------------------------
 ;Run Fwd

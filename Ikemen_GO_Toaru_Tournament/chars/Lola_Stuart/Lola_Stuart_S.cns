@@ -6,6 +6,12 @@ physics=S
 anim=1500
 ctrl=0
 sprpriority=2
+
+[State 191, Snd 1]
+type = PlaySnd
+trigger1 = AnimElem = 6
+value = 1000,1
+
 [State 1005, BGPalFx]
 type=BGPalFX
 trigger1=animelem=6
@@ -86,8 +92,8 @@ guardflag=MA
 priority=5,Hit
 pausetime=12,12
 sparkno=-1
-hitsound   = 5,3
-guardsound = 6,0
+hitsound = s20, 0                  ;Sound to play on hit
+guardsound = s120, 0                ;Sound to play on guard
 p2stateno=1006
 ground.type = High
 air.type = High
@@ -151,6 +157,12 @@ physics=S
 anim=1505
 ctrl=0
 sprpriority=2
+
+[State 191, Snd 1]
+type = PlaySnd
+trigger1 = AnimElem = 6
+value = 1000,1
+
 ;poweradd=-1000
 ;[State 1420, Afterimage]
 ;type = AfterImage
@@ -261,8 +273,8 @@ guardflag=MA
 priority=5,Hit
 sparkno=-1
 pausetime=12,12
-hitsound   = 5,3
-guardsound = 6,0
+hitsound = s20, 0                  ;Sound to play on hit
+guardsound = s120, 0                ;Sound to play on guard
 p2stateno=1016
 ground.type = High
 air.type = High
@@ -328,6 +340,16 @@ anim=1506
 ctrl=0
 poweradd=-1000
 sprpriority=2
+
+[State 191, Snd 1]
+type = PlaySnd
+trigger1 = AnimElem = 6
+value = 1000,1
+
+[State 230, 1]
+type = PlaySnd
+trigger1 = Time = 0
+value = s600,1
 
 
 [State 0, EnvColor]
@@ -493,8 +515,8 @@ guardflag=MA
 priority=5,Hit
 pausetime=12,12
 sparkno=-1
-hitsound   = 5,3
-guardsound = 6,0
+hitsound = s20, 0                  ;Sound to play on hit
+guardsound = s120, 0                ;Sound to play on guard
 p2stateno=1026
 ground.type = High
 air.type = High
@@ -605,8 +627,8 @@ guardflag = MA
 pausetime = 8,8
 sparkno = -1
 sparkxy = -10,-37
-hitsound   = 5,1
-guardsound = 6,0
+hitsound = s20, 0                  ;Sound to play on hit
+guardsound = s120, 0                ;Sound to play on guard
 ground.slidetime = 16
 ground.hittime  = 18
 ground.velocity = -2.5,-13.5
@@ -766,8 +788,8 @@ guardflag = MA
 pausetime = 2,1
 sparkno = -1
 sparkxy = -10,-37
-hitsound   = 5,1
-guardsound = 6,0
+hitsound = s20, 0                  ;Sound to play on hit
+guardsound = s120, 0                ;Sound to play on guard
 ground.type = high
 ground.slidetime = 10
 ground.hittime  = 14
@@ -1004,8 +1026,8 @@ guardflag = MA
 pausetime = 2,1
 sparkno = -1
 sparkxy = -10,-37
-hitsound   = 5,1
-guardsound = 6,0
+hitsound = s20, 0                  ;Sound to play on hit
+guardsound = s120, 0                ;Sound to play on guard
 ground.type = High
 ground.slidetime = 10
 ground.hittime  = 14
@@ -1251,8 +1273,8 @@ guardflag = MA
 pausetime = 1,1
 sparkno = 0
 sparkxy = -10,-37
-hitsound   = 5,1
-guardsound = 6,0
+hitsound = s20, 0                  ;Sound to play on hit
+guardsound = s120, 0                ;Sound to play on guard
 ground.type = Low
 ground.slidetime = 10
 ground.hittime  = 14
@@ -1368,7 +1390,7 @@ trigger3 = (Time = [48,65]) && Time % 6 = 5
 trigger4 = (Time = [92,113]) && Time % 3 = 2
 
 trigger5 = (Time = [115,143]) && Time % 2 = 1
-value = 0,1
+value = 0,0
 channel = 5
 
 
@@ -1477,13 +1499,16 @@ absolute = 0
 		Time=262
 
 		
-
+[State 115,SE]
+type=PlaySnd
+trigger1=time = 150
+value=1050,0
 		
 	[State 6450, PlaySnd]
 type = PlaySnd
 ;trigger1 = movehit
 trigger1 = time=180
-value = 200,1
+value = 20,0
 ;channel = 1
 
 [State 0, Explod]
@@ -2387,6 +2412,11 @@ physics = N
 anim = 1009
 sprpriority = 5
 
+[State 230, 1]
+type = PlaySnd
+trigger1 = Time = 0
+value = 1000,0
+
 [State 1511, Hitdef]
 type = HitDef
 trigger1 = time%2=0
@@ -2399,8 +2429,8 @@ priority = 3,hit
 pausetime = 1,3
 sparkno = -1
 sparkxy = 0,-10
-hitsound   = 5,1
-guardsound = 6,0
+hitsound   = s1,9
+guardsound = s1,0
 ground.type = High
 air.type = High
 ground.slidetime = 10
@@ -2477,6 +2507,11 @@ physics = N
 anim = 1015
 sprpriority = 3
 
+[State 230, 1]
+type = PlaySnd
+trigger1 = Time = 0
+value = 1000,0
+
 [State 1511, Hitdef]
 type = HitDef
 trigger1 = time%2=0
@@ -2489,8 +2524,8 @@ priority = 3,hit
 pausetime = 1,3
 sparkno = -1
 sparkxy = 0,0
-hitsound   = 5,1
-guardsound = 6,0
+hitsound   = s1,9
+guardsound = s1,0
 ground.type = High
 air.type = High
 ground.slidetime = 5
@@ -2565,6 +2600,11 @@ physics = N
 anim = 1016
 sprpriority = 3
 
+[State 230, 1]
+type = PlaySnd
+trigger1 = Time = 0
+value = 1000,0
+
 [State 1511, Hitdef]
 type = HitDef
 trigger1 = time%2=0
@@ -2577,8 +2617,8 @@ priority = 3,hit
 pausetime = 1,3
 sparkno = -1
 sparkxy = 0,0
-hitsound   = 5,1
-guardsound = 6,0
+hitsound   = s1,9
+guardsound = s1,0
 ground.type = High
 air.type = High
 ground.slidetime = 5
@@ -2653,6 +2693,11 @@ physics = N
 anim = 1017
 sprpriority = 3
 
+[State 230, 1]
+type = PlaySnd
+trigger1 = Time = 0
+value = 1000,0
+
 [State 1511, Hitdef]
 type = HitDef
 trigger1 = time%2=0
@@ -2665,8 +2710,8 @@ priority = 3,hit
 pausetime = 1,3
 sparkno = -1
 sparkxy = 0,0
-hitsound   = 5,1
-guardsound = 6,0
+hitsound   = s1,9
+guardsound = s1,0
 ground.type = High
 air.type = High
 ground.slidetime = 5
@@ -2949,44 +2994,3 @@ value=0
 ctrl=1
 ;ignorehitpause = 
 ;persistent =
-
-[Statedef 1082]
-type = A
-movetype = A
-physics = N
-anim = 1017
-sprpriority = 3
-
-[State 1511, Hitdef]
-type = HitDef
-trigger1 = time%2=0
-attr = S, SP
-animtype  = Medium
-damage    = Ceil(15*parent,fvar(10)),1
-guardflag = MA
-hitflag = MAF
-priority = 3,hit
-pausetime = 1,1
-sparkno = 0
-sparkxy = 0,0
-hitsound   = 5,1
-guardsound = 6,0
-ground.type = High
-air.type = High
-ground.slidetime = 5
-ground.hittime  = 15
-ground.velocity = -3
-air.velocity = 0,-3
-ground.cornerpush.veloff=0
-air.cornerpush.veloff=0
-down.cornerpush.veloff=0
-guard.cornerpush.veloff=0
-airguard.cornerpush.veloff=0
-
-
-
-[State 0, DestroySelf]
-type = DestroySelf
-trigger1 = animtime=0
-;ignorehitpause = 
-;persistent = 
