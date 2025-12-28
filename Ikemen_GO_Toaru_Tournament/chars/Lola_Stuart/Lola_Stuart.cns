@@ -223,6 +223,11 @@ anim=171
 type = S
 sprpriority = 5
 
+[State 115,SE]
+type=PlaySnd
+trigger1=AnimElemtime(66)=0
+value=170,0
+
 [State 0, PalFX]
 type = PalFX
 trigger1 = animelem = 65
@@ -483,6 +488,12 @@ ctrl = 0
 anim = 181
 velset = 0,0
 
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = 180,0
+channel = 0
+
 [State 0, Explod]
 type = Explod
 trigger1 = animelem=2
@@ -568,6 +579,10 @@ type = ChangeState
 trigger1 = AnimTime = 0
 value = 0
 
+[State 115,SE]
+type=PlaySnd
+trigger1=AnimElemtime(13)=0
+value=190,random%2
 
 ;ignorehitpause = 
 ;persistent = 
@@ -638,15 +653,8 @@ sprpriority=8
 ; broken.
 [State 191, Snd 1]
 type = PlaySnd
-trigger1 = AnimElem = 7
-value = F5,2
-volume = -40
-
-[State 191, Snd 2]
-type = PlaySnd
-trigger1 = AnimElemTime(7) = 3
-value = F5,3
-volume = -80
+trigger1 = AnimElem = 4
+value = 50,0
 
 ;second intro
 [Statedef 193]
@@ -654,6 +662,11 @@ type = S
 ctrl = 0
 anim = 1903
 velset = 0,0
+
+[State 115,SE]
+type=PlaySnd
+trigger1=AnimElemtime(13)=0
+value=190,random%2
 
 [State 0, Explod]
 type = Explod
@@ -708,6 +721,11 @@ removeongethit = 0
 ;supermove = 0
 ;pausemove = 0
 
+[State 191, Snd 1]
+type = PlaySnd
+trigger1 = time = 0
+value = 0,14
+
 
 [State 191, 2] ;Assert this until you want "round 1, fight" to begin
 type = AssertSpecial
@@ -750,6 +768,10 @@ movetype = I
 physics = S
 sprpriority = 2
 
+[State 115,SE]
+type=PlaySnd
+trigger1=animelem = 7
+value=195,0
 
 [State 195, 1]
 type = CtrlSet
@@ -889,4 +911,14 @@ type = PlaySnd
 triggerall = Time = 1
 trigger1 = stateno = 52 ;Jump land
 trigger2 = stateno = 106 ;Run-back land
-value = 40, 0
+value = 105, 0
+
+;Gethit sounds
+[State -3, Get Hit Sounds]
+type = PlaySnd
+triggerall = alive && time = 1
+trigger1 = (stateno = 5000 || stateno = 5010 || stateno = 5020 || stateno = 5070 || stateno = 5080)
+trigger1 = enemynear,hitdefattr = SCA,NA,SA,HA
+value = S5000,random%4
+volume = 255
+channel = 0

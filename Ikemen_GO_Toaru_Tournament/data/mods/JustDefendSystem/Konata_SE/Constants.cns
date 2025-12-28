@@ -1,0 +1,82 @@
+;====================<CONSTANTS>====================
+[Data]
+life = 940
+power = 3000
+attack = 100
+defence = 100
+fall.defence_up = 50
+lieDown.time = 60
+airJuggle = 0
+sparkNo = s8010
+guard.sparkNo = s8000
+KO.echo = 0
+volumescale = 100
+IntPersistIndex = 0
+FloatPersistIndex = 0
+
+[Size]
+xScale = .5
+yScale = .5
+ground.back = 12
+ground.front = 12
+air.back = 12
+air.front = 12
+height = 60
+attack.dist = 160
+proj.attack.dist = 90
+proj.doScale = 0
+head.pos = 2, -83
+mid.pos = -3, -55
+shadowOffset = 0
+draw.offset = 0,0
+
+[Velocity]
+walk.fwd = 3
+walk.back = -2.8
+run.fwd = 6, 0
+run.back = -6.25, -6.25
+jump.neu = 0, -10.47
+jump.fwd = 2.8
+jump.back = -2.8
+runJump.fwd = 4.4, -11.47
+runJump.back = -4.4, -11.47
+airjump.neu = 0,-6.5
+airjump.back = -2.8
+airjump.fwd = 2.8
+
+[Movement]
+airJump.num = 0
+airJump.height = 0
+yAccel = 0.46875
+stand.friction = 0.85
+crouch.friction = 0.82
+stand.friction.threshold = 1.0
+crouch.friction.threshold = 1.0
+air.gethit.groundLevel = 25
+air.gethit.groundRecover.ground.threshold = -20
+air.gethit.groundRecover.groundLevel = 10
+air.gethit.airRecover.threshold = -1
+air.gethit.airRecover.yAccel = 0.35
+air.gethit.trip.groundLevel = 15
+down.bounce.offset = 0, 20
+down.bounce.yAccel = 0.4
+down.bounce.groundLevel = 12
+down.friction.threshold = 0.5
+
+
+;English（英語）
+[Quotes]
+victory0 = "It's all love, love!"
+victory1 = "A flat chest is a status symbol! A rarity! And when you think about it, there is a demand, right? Which means I'm valuable!"
+victory2 = "If you say only realistic things, your life is definitely boring."
+victory3 = "Get what you want. You need passion and investment!"
+victory4 = "When I do martial arts, my heart grows straight, right?"
+
+
+;Japanese（日本語）
+[ja.Quotes]
+victory0 = "ひとえに愛だよ、愛！"
+victory1 = "貧乳はステータスだ！希少価値だ！\n言われてみればそういうニーズもあるわけじゃん？私は貴重なわけよ！"
+victory2 = "現実的な事ばっか言ってたら、人生ぜったいつまんないよ。"
+victory3 = "欲しいものを手に入れるんだよ？情熱も投資も必要だよ！"
+victory4 = "格闘技とかやってると　心も真っ直ぐ成長するっていうじゃん？"

@@ -510,6 +510,12 @@ ctrl=1
 	anim = 3400
 	sprpriority = 2
 
+	[State 6500,Snd2]
+		Type=playSnd
+		Trigger1=AnimElemTime(1)=0
+		value=3450,0
+		channel=0
+
 	[State 3450,カットイン]
 		type = Helper
 		trigger1 = NumHelper(4900) = 0
@@ -635,6 +641,12 @@ ctrl=1
 	ctrl = 0
 	anim = 3470
 	sprpriority = 3
+
+	[State 6500,Snd2]
+		Type=playSnd
+		Trigger1=AnimElemTime(5)=0
+		value=3470,0
+		channel=0
 
 	[State 3470,黒味]
 		Type = Explod

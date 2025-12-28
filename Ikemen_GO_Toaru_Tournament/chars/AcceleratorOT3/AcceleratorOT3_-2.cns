@@ -1170,7 +1170,7 @@ ignorehitpause = 1
 		time = 1
 [State 7, Reflect Armor]
 type = PowerAdd
-trigger1 = (numExplod(8000) != 0)
+trigger1 = (numHelper(8000) != 0)
 trigger1=command="hold_z"
 triggerall=gametime%2=1
 triggerall=movetype!=H
