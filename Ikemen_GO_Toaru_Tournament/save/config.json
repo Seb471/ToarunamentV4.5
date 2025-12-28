@@ -28,7 +28,9 @@
 		"data/mods/intro-outro.zss",
 		"data/mods/intro-outro-config.zss",
 		"data/mods/lifelead.zss",
-		"data/mods/mixed.zss"
+		"data/mods/mixed.zss",
+		"data/mods/adv-guard.zss",
+		"data/mods/cancel-assault.zss"
 	],
 	"ControllerStickSensitivity": 0.4,
 	"Credits": 10,
@@ -114,16 +116,16 @@
 	"TrainingChar": "",
 	"TurnsRecoveryBase": 0,
 	"TurnsRecoveryBonus": 20,
-	"VolumeBgm": 10,
+	"VolumeBgm": 1,
 	"VolumeMaster": 80,
-	"VolumeSfx": 80,
+	"VolumeSfx": 100,
 	"VRetrace": 1,
 	"WindowIcon": [
-		"external/icons/IkemenCylia_256.png",
-		"external/icons/IkemenCylia_96.png",
-		"external/icons/IkemenCylia_48.png"
+		"external/icons/stock-vector-atom-yellow-glowing-neon-icon_256.png",
+		"external/icons/stock-vector-atom-yellow-glowing-neon-icon_96.png",
+		"external/icons/stock-vector-atom-yellow-glowing-neon-icon_48.png"
 	],
-	"WindowTitle": "Ikemen GO",
+	"WindowTitle": "とあるトーナメントのカルダノ",
 	"XinputTriggerSensitivity": 0,
 	"ZoomActive": true,
 	"ZoomDelay": false,
