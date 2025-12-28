@@ -913,7 +913,7 @@ ignorehitpause = 1
 
 ;=====================================================
 
-;Throw Kick
+;Throw Attmept
 [Statedef 800]
 Type    = S
 MoveType= A
@@ -945,7 +945,7 @@ Value = Facing
 [State ]
 Type = HitDef
 Trigger1 = P2MoveType != H || P2StateNo = [120,159]
-Trigger1 = P2BodyDist X = [-32,32]
+Trigger1 = P2BodyDist X = [-36,36]
 Trigger1 = Time = 2
 Attr = S, NT
 HitFlag = M-
@@ -955,8 +955,8 @@ SprPriority = 1
 sparkno=-1
 P1Facing = 1
 P2Facing = 1
-P1StateNo = 810
-P2StateNo = 1056
+P1StateNo = cond(command="holdback",910,810)
+P2StateNo = cond(command="holdback",911,1056)
 NumHits = 0
 Fall.XVelocity = 0
 Fall.YVelocity = 0
@@ -1279,69 +1279,6 @@ ctrl = 0
 [State ]
 Type = ChangeState
 Trigger1 = AnimTime = 0 && anim =811
-Value = 0
-Ctrl = 1
-
-
-;========================================================================================
-;Throw Judo
-[Statedef 900]
-Type    = S
-MoveType= A
-Physics = S
-Ctrl = 0
-Anim = 900
-SprPriority = 2
-Facep2 = 1
-
-[State 600,V1=0]
-		Type=VarSet
-		Trigger1=Time=0
-		var(1)=0
-
-[State ]
-Type = VelSet
-TriggerAll = Time = 0
-Trigger1 = PrevStateNo != [100,103]
-X = 0
-Y = 0
-
-[State ]
-Type = VarSet
-Trigger1 = Time = 0
-V = 55
-Value = Facing
-
-
-[State ]
-Type = HitDef
-Trigger1 = P2MoveType != H || P2StateNo = [120,159]
-Trigger1 = P2BodyDist X = [-36,36]
-Trigger1 = Time = 2
-Attr = S, NT
-HitFlag = M-
-Priority = 1, Miss
-HitSound = s10,0
-SprPriority = 1
-sparkno=-1
-P1Facing = 1
-P2Facing = 1
-P1StateNo = 910
-P2StateNo = 911
-NumHits = 0
-Fall.XVelocity = 0
-Fall.YVelocity = 0
-Down.Bounce = 1
-
-
-[State ]
-Type = AttackDist
-Trigger1 = 1
-Value = 0
-
-[State ]
-Type = ChangeState
-Trigger1 = AnimTime = 0
 Value = 0
 Ctrl = 1
 

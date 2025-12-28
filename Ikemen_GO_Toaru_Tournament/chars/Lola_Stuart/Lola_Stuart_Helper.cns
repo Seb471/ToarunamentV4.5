@@ -17,7 +17,10 @@ anim = 1501
 postype = p1
 pos = -35, -95
 
-
+[State 191, Snd 1]
+type = PlaySnd
+trigger1 = AnimElem = 4
+value = 1500,0
 
 
 [State 1500, Helper]
@@ -255,7 +258,10 @@ anim = 1501
 postype = p1
 pos = -35, -95
 
-
+[State 191, Snd 1]
+type = PlaySnd
+trigger1 = AnimElem = 4
+value = 1500,0
 
 
 [State 1500, Helper]
@@ -1454,7 +1460,10 @@ anim = 1501
 postype = p1
 pos = -35, -95
 
-
+[State 191, Snd 1]
+type = PlaySnd
+trigger1 = AnimElem = 4
+value = 1500,0
 
 
 [State 1500, Helper]
@@ -1662,7 +1671,10 @@ anim = 1501
 postype = p1
 pos = -35, -95
 
-
+[State 191, Snd 1]
+type = PlaySnd
+trigger1 = AnimElem = 4
+value = 1500,0
 
 
 [State 1500, Helper]
@@ -1924,6 +1936,8 @@ poweradd= 0
 velset = 0,0
 anim = 1561
 sprpriority = 2
+
+
 [State 0, Pause]
 type = Pause
 trigger1 = time = 0
@@ -2006,11 +2020,28 @@ sinadd = 256,256,256,720
 ;ignorehitpause = 
 ;persistent = 
 
+[State 0, Explod]
+type = Explod
+trigger1 = time = 5305
+anim = 11010
+ID = 11010
+pos = 0,0
+postype = left  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+scale = 1,1
+sprpriority = 5
+ontop = 1
+ownpal = 1
+
+
 [State 0, AllPalFX]
-type = AllPalFX
+type = envcolor
 trigger1 = time = 5305
 time = -1
-add = 256,256,256
+value = 256,256,256
 ;mul = 256,256,256
 ;sinadd = 256,256,256,720
 ;invertall = 0
@@ -2022,7 +2053,7 @@ add = 256,256,256
 [State 0, PosSet]
 type = PosSet
 trigger1 = time=0
-x = 0
+x = -50*facing
 y = 0
 ;ignorehitpause = 
 ;persistent = 
@@ -2381,7 +2412,7 @@ sprpriority = 2
 
 [State 0, PosSet]
 type = PosSet
-trigger1 = 1
+trigger1 = time = 0
 y = 0
 
 [State 2020, 0]
@@ -2604,7 +2635,7 @@ movetype = A
     type = Turn ;This is to turn the helper when your character turns.
     trigger1 = facing != parent,facing
 [State 1511, Hitdef]
-type = HitDef
+type = null
 trigger1 = (p2name = "Kamijou Touma" || p2name = "Kamijo Toma") && p2life < 10
 attr = S, SP
 animtype  = Medium
