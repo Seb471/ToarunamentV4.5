@@ -1029,16 +1029,12 @@ time = 1
 [State -1, Throw]
 Type = ChangeState
 value = 800
-	TriggerAll=Alive!=0
-	TriggerAll = StateType != A
-	TriggerAll=command="a+b"
-	triggerAll = Var(9) = 0
-	;TriggerAll=command="holdfwd"
-	;TriggerAll=StateNo!=100
-	Triggerall=enemynear,StateType=S||enemynear,StateType=C
-	Triggerall=enemynear,MoveType!=H
-	Trigger1=Ctrl
-
+triggerall = command = "x"
+triggerAll = Var(9) = 0
+triggerall = statetype != A
+triggerall = command = "holdfwd" || command = "holdback" 
+trigger1 = ctrl
+trigger2 = stateno=[100,101]
 ;---------------------------------------------------
 ;[State -1, ìñêg]
 ;	type = ChangeState

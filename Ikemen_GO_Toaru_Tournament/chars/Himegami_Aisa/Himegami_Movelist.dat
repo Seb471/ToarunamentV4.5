@@ -43,6 +43,11 @@ Roman Cancel 						^HP / ^Z
 
 Charge Gauge 						^S
 
+Komoe								^LK / ^A (when downed)
+(press this when downed to have a cross appear,
+upon the next attack when downed, Komoe will ram
+into the opponent)
+
 <#ff0000>Supers and Hypers:</>
 
 Near Pebble Throw					D_DF_F ^LK / _D_DF_F ^A

@@ -145,8 +145,8 @@ poweradd=20+fvar(11)
 
 [State 210, 1]
 type = PlaySnd
-trigger1 = Time = 2
-value = 0, 1
+trigger1 = Time = 0
+value = 1,3
 
 
 
@@ -155,14 +155,14 @@ type = HitDef
 trigger1 = Time = 0
 attr = S, NA
 animtype  = Light
-damage    = Ceil(fvar(0)*20)
+damage    = Ceil(fvar(0)*20),0
 hitflag =MAF
 guardflag = MA
 pausetime = 5,5
 sparkno = -1
 sparkxy = -10,-37
-hitsound   = 5,1
-guardsound = 6,0
+HitSound=S0,2+random%2                  ;Sound to play on hit
+GuardSound=S1,0                ;Sound to play on guard
 ground.type = Low
 ground.slidetime = 17
 ground.hittime  = 17
@@ -391,8 +391,8 @@ removeongethit = 0
 
 [State 220, 1]
 type = PlaySnd
-trigger1 = Time = 2
-value = 0, 1
+trigger1 = Time = 0
+value = 1,2
 
 [State 220, 2]
 type = HitDef
@@ -405,8 +405,8 @@ hitflag = MAF
 pausetime = 12,12
 sparkno = -1
 sparkxy = -10,-60
-hitsound   = 5,2
-guardsound = 6,0
+hitsound = s20, 1                  ;Sound to play on hit
+guardsound = s120, 0                ;Sound to play on guard
 ground.type = Low
 ground.slidetime = 12
 ground.hittime  = 22
@@ -498,8 +498,13 @@ removeongethit = 0
 
 [State 220, 1]
 type = PlaySnd
-trigger1 = Time = 2
-value = 0, 1
+trigger1 = Time = 0
+value = 1,3
+
+[State 220, 1]
+type = PlaySnd
+trigger1 = Time = 0
+value = 20,1
 
 [State 220, 2]
 type = HitDef
@@ -512,8 +517,8 @@ hitflag = MAF
 pausetime = 12,12
 sparkno = -1
 sparkxy = -10,-60
-hitsound   = 5,2
-guardsound = 6,0
+hitsound = s1, 31                  ;Sound to play on hit
+guardsound = s120, 0                ;Sound to play on guard
 ground.type = Low
 ground.slidetime = 12
 ground.hittime  = 28
@@ -598,8 +603,8 @@ pausetime = 13,12
 guard.pausetime = 16,12
 sparkno = -1
 sparkxy = -10,-60
-hitsound   = 5,2
-guardsound = 6,0
+hitsound = s20, 0                  ;Sound to play on hit
+guardsound = s120, 0                ;Sound to play on guard
 ground.type = Low
 ground.slidetime = 12
 ground.hittime  = 17
@@ -681,8 +686,8 @@ poweradd=fvar(11)
 
 [State 230, 1]
 type = PlaySnd
-trigger1 = Time = 2
-value = 0, 1
+trigger1 = Time = 0
+value = 1,4
 
 
 
@@ -715,6 +720,7 @@ value = 0
 ctrl = 1
 
 ;-----------------------------------
+;Blue thing
 [Statedef 231]
 type    = S
 movetype= A
@@ -734,8 +740,8 @@ guardflag = MA
 hitflag = MAF
 sparkno = -1
 sparkxy = -10,-60
-hitsound   = 5,2
-guardsound = 6,0
+hitsound   = s1,9
+guardsound = s1,0
 ground.type = High
 ground.slidetime = 25
 ground.hittime  = 27
@@ -765,8 +771,8 @@ hitflag = MAF
 pausetime = 12,12
 sparkno = -1
 sparkxy = -10,-60
-hitsound   = 5,2
-guardsound = 6,0
+hitsound   = s1,9
+guardsound = s1,0
 ground.type = Low
 ground.slidetime = 25
 ground.hittime  = 27
@@ -819,7 +825,7 @@ fall.recovertime=45
 
 [State 430,V1=1]
 		Type=ParentVarSet
-		Trigger1=MoveContact&& animelemtime(3)>=0
+		Trigger1=MoveContact
 		var(1)=1
 ignorehitpause = 1
 
@@ -842,6 +848,11 @@ velset = 0,0
 anim = 232
 sprpriority = 2
 poweradd=fvar(11)
+
+[State 230, 1]
+type = PlaySnd
+trigger1 = Time = 0
+value = 1,4
 
 [State 200,V1=0]
 		Type=VarSet
@@ -898,8 +909,8 @@ pausetime = 12,12
 guard.pausetime=6,6
 sparkno = -1
 sparkxy = -10,-60
-hitsound   = 5,2
-guardsound = 6,0
+hitsound = s20, 0                  ;Sound to play on hit
+guardsound = s120, 0                ;Sound to play on guard
 ground.type = Low
 ground.slidetime = 14
 ground.hittime  = 21
@@ -1171,8 +1182,8 @@ poweradd=10+fvar(11)
 
 [State 410, 1]
 type = PlaySnd
-trigger1 = Time = 1
-value = 0, 0
+trigger1 = Time = 0
+value = 1, 3
 
 [State 410, 2]
 type = HitDef
@@ -1185,8 +1196,8 @@ guardflag = L
 pausetime = 6,6
 sparkno = -1
 sparkxy = -10,-8
-hitsound   = 5,1
-guardsound = 6,0
+hitsound = s20, 0                  ;Sound to play on hit
+guardsound = s120, 0                ;Sound to play on guard
 ground.type = Low
 ground.slidetime = 6
 ground.hittime  = 18
@@ -1284,8 +1295,8 @@ poweradd=fvar(11)
 
 [State 420, 2]
 type = PlaySnd
-trigger1 = Time = 2
-value = 0, 2
+trigger1 = Time = 0
+value = 1, 5
 
 [State 420, 3]
 type = HitDef
@@ -1297,8 +1308,8 @@ guardflag = L
 pausetime = 12,12
 sparkno = -1
 sparkxy = -5,-10
-hitsound   = 5,2
-guardsound = 6,0
+HitSound=S0,2+random%2                  ;Sound to play on hit
+GuardSound=S1,0                ;Sound to play on guard
 ground.type = Trip
 ground.slidetime = 10
 ground.hittime  = 22
@@ -1371,7 +1382,7 @@ sprpriority = 2
 [State 421, 1]
 type = PlaySnd
 trigger1 = Animelem=7 || Animelem=11
-value = 0, 0
+value = 1, 2
 
 [State 421, 2]
 type = HitDef
@@ -1384,8 +1395,8 @@ guardflag = L
 pausetime = 6,6
 sparkno = -1
 sparkxy = -10,-8
-hitsound   = 5,1
-guardsound = 6,0
+HitSound=S0,2+random%2                  ;Sound to play on hit
+GuardSound=S1,0                ;Sound to play on guard
 ground.type = Low
 ground.slidetime = 6
 ground.hittime  = 20
@@ -1478,8 +1489,8 @@ sprpriority = 2
 
 [State 430, 1]
 type = PlaySnd
-trigger1 = Time = 1
-value = 0, 0
+trigger1 = Time = 0
+value = 1, 2
 
 [State 430, 2]
 type = HitDef
@@ -1492,8 +1503,8 @@ guardflag = MA
 pausetime = 6,6
 sparkno = -1
 sparkxy = -10,-8
-hitsound   = 5,1
-guardsound = 6,0
+hitsound = s20, 0                  ;Sound to play on hit
+guardsound = s120, 0                ;Sound to play on guard
 ground.type = Low
 ground.slidetime = 12
 ground.hittime  = 23
@@ -1585,8 +1596,8 @@ sprpriority = 2
 
 [State 431, 1]
 type = PlaySnd
-trigger1 = Time = 1
-value = 0, 0
+trigger1 = Time = 0
+value = 1, 2
 
 [State 431, 2]
 type = HitDef
@@ -1599,8 +1610,8 @@ guardflag = MA
 pausetime = 6,6
 sparkno = -1
 sparkxy = -10,-8
-hitsound   = 5,1
-guardsound = 6,0
+hitsound = s20, 0                  ;Sound to play on hit
+guardsound = s120, 0                ;Sound to play on guard
 ground.type = Low
 ground.slidetime = 12
 ground.hittime  = 23
@@ -1690,8 +1701,8 @@ sprpriority = 2
 
 [State 432, 1]
 type = PlaySnd
-trigger1 = Time = 1
-value = 0, 0
+trigger1 = Time = 0
+value = 1, 2
 
 [State 432, 2]
 type = HitDef
@@ -1704,8 +1715,8 @@ guardflag = MA
 pausetime = 6,6
 sparkno = -1
 sparkxy = -10,-8
-hitsound   = 5,1
-guardsound = 6,0
+hitsound = s20, 0                  ;Sound to play on hit
+guardsound = s120, 0                ;Sound to play on guard
 ground.type = Low
 ground.slidetime = 12
 ground.hittime  = 23
@@ -1834,8 +1845,8 @@ x = 3.75
 
 [State 600, 1]
 type = PlaySnd
-trigger1 = Time = 1
-value = 0, 0
+trigger1 = Time = 0
+value = 1, 3
 
 [State 600, 2]
 type = HitDef
@@ -1848,8 +1859,8 @@ priority = 3
 pausetime = 3,4
 sparkno = -1;7002
 sparkxy = -10,-58
-hitsound   = 5,0
-guardsound = 6,0
+hitsound = s20, 0                  ;Sound to play on hit
+guardsound = s120, 0                ;Sound to play on guard
 ground.type = High
 ground.slidetime = 21
 ground.hittime  = 21
@@ -1873,8 +1884,8 @@ hitflag=MAF
 pausetime = 1,1
 sparkno = -1;S7002
 sparkxy = -10,-37
-hitsound   = 5,1
-guardsound = 6,0
+hitsound = s20, 0                  ;Sound to play on hit
+guardsound = s120, 0                ;Sound to play on guard
 ground.type = Low
 ground.slidetime = 21
 ground.hittime  = 21
@@ -2027,7 +2038,7 @@ x = 3.75
 [State 610, 2]
 type = PlaySnd
 trigger1 = Time = 2
-value = 0, 1
+value = 1,3
 
 [State 0, Explod]
 type = Helper
@@ -2079,8 +2090,8 @@ priority = 4
 pausetime = 3,3
 sparkno = -1
 sparkxy = -10,-55
-hitsound   = 5,3
-guardsound = 6,0
+hitsound   = s20,1
+guardsound = s1,0
 animtype = light
 ground.type = High
 ground.slidetime = 20
@@ -2253,7 +2264,7 @@ value = 45
 [State 630, 1]
 type = PlaySnd
 trigger1 = Time = 1
-value = 0, 0
+value = 1, 4
 
 [State 630, 2]
 type = HitDef
@@ -2266,8 +2277,8 @@ priority = 3
 pausetime = 1,1
 sparkno = -1;S7002
 sparkxy = -5,-35
-hitsound   = 5,0
-guardsound = 6,0
+hitsound = s20, 0                  ;Sound to play on hit
+guardsound = s120, 0                ;Sound to play on guard
 ground.type = High
 ground.slidetime = 20
 ground.hittime  = 22
@@ -2400,7 +2411,7 @@ Trigger1=P2Dist X<0
 [State 630, 1]
 type = PlaySnd
 trigger1 = Time = 1
-value = 0, 0
+value = 1, 3
 
 ;[State 0, Explod]
 ;type = Explod
@@ -2440,8 +2451,8 @@ priority = 3
 pausetime = 10,10
 guard.pausetime=14,10
 sparkno = -1;S7003
-hitsound   = 5,0
-guardsound = 6,0
+hitsound = s20, 0                  ;Sound to play on hit
+guardsound = s120, 0                ;Sound to play on guard
 ground.type = High
 ground.slidetime = 15
 ground.hittime  = 25
@@ -2517,257 +2528,4 @@ ignorehitpause = 1
 		Trigger1=Vel Y >0
 		value=52
 		Ctrl=1
-;---------------------------------------------------------------------------
-;Jump Strong Kick
-; CNS difficulty: easy
-
-;---------------------------------------------------------------------------
-;Throw Attempt
-; CNS difficulty: medium-advanced
-; Description: Throws are not difficult to make, although then can be
-;     tedious at times. Throw attempt states have a HitDef of a
-;     special format. The key parameters in a throw are p1stateno
-;     and p2stateno. If the HitDef successfully connects, then
-;     the attacker will change to the state number specified by
-;     p1stateno, and the opponent will be change to the state
-;     number assigned to p2stateno. The special thing about p2stateno
-;     is that the opponent will be temporarily brought into the
-;     attacker's state file. In this case, no matter who the
-;     opponent is, he will be taken to state 820 of this file (kfm.cns)
-;     and remain here until the end of the throw (look at his debug
-;     information when he is being thrown; the text changes to yellow
-;     to mean that he is in another player's state file).
-[Statedef 800]
-type    = S
-movetype= A
-physics = S
-velset = 0,0
-ctrl = 0
-anim = 800
-sprpriority = 2
-poweradd=fvar(11)
-
-[State 200,V1=0]
-		Type=VarSet
-		Trigger1=time=0
-		var(1)=0
-
-
-; Notes: The '-' symbol in the hitflag field means that it only affects
-;   players who are not in a hit state. This prevents KFM from combo-ing
-;   into the throw. The priority should be set to a low number, such as
-;   1 or 2, so that the throw does not take precedence over normal attacks.
-;   The type of priority must always be set to "Miss" or "Dodge" for throws,
-;   otherwise strange behavior can result.
-[State 800, 1]
-type = HitDef
-Trigger1 = Time = 0
-attr = S, NT          ;Attributes: Standing, Normal Throw
-hitflag = M-          ;Affect only ground people who are not being hit
-priority = 1, Miss    ;Throw has low priority, must be miss or dodge type.
-sparkno = -1          ;No spark
-p1sprpriority = 1     ;Draw p1's sprite in front of p2
-                      ;p2's sprite priority is set to 0 by default
-p1facing = 1
-p2facing = 1          ;Force p2 to face KFM
-p1stateno = 810       ;On success, KFM changes to state 810
-p2stateno = 820       ;If hit, p2 changes to state 820 in KFM's cns
-guard.dist = 0        ;This prevents p2 from going into a guard state if close
-fall = 1              ;Force p2 into falling down
-
-[State 800, 2]
-type = ChangeState
-Trigger1 = AnimTime = 0
-value = 0
-ctrl = 1
-
-;---------------------------------------------------------------------------
-;Throw Success
-; Description: In this state, KFM throws the opponent by binding him to
-;     various offsets based on his current frame of animation. For
-;     example, [State 810, Bind 1] binds the opponent to an offset of
-;     28 pixels in front of KFM. That puts him around where KFM's hand
-;     is at. Is is important to keep the opponent bound using a
-;     TargetBind controller at all times, until you let him go. This
-;     is especially important if your player has a Clsn2 box that
-;     allows him to get hit while throwing someone. Each time a player
-;     gets hit, all his bound targets will be set to a fall state. If
-;     the opponent is not bound, then he may get stuck in his thrown
-;     state when his attacker is knocked out of the throw halfway.
-; Notes: There is a TargetLifeAdd controller to decrease the opponent's
-;     life, and a TargetState controller to change his state to a
-;     falling state when KFM lets go of him.
-[Statedef 810]
-type    = S
-movetype= A
-physics = N
-anim = 810
-poweradd = 10
-
-
-
-	[State 810, ????????1]
-		type = TargetBind
-		trigger1 = AnimElemTime(2) < 0
-		pos = 35, 0
-
-	[State 810, ????????2]
-		type = TargetBind
-		trigger1 = AnimElemTime(2) >= 0 && AnimElemTime(4) < 0
-		pos = 52, 0
-
-	[State 810, ????????3]
-		type = TargetBind
-		trigger1 = AnimElemTime(4) >= 0 && AnimElemTime(6) < 0
-		pos = 56, 0
-
-
-[State 0, TargetVelSet]
-type = TargetVelSet
-trigger1 = animelem=6
-x = -10
-y = -10
-ID = -1
-;ignorehitpause = 
-;persistent = 
-
-[State 0, PlaySnd]
-type = PlaySnd
-trigger1 = animelem=6
-value = 200,1
-volumescale = 100
-channel = -1
-;lowpriority = -1
-freqmul = 1.0
-loop = 0
-pan = 0
-;abspan = 
-;ignorehitpause = 
-;persistent = 
-
-
-
-
-[State 810, Hurt 11]
-type = TargetLifeAdd
-trigger1 = AnimElem = 6
-value = -78
-
-[State 200 ノックバックカウント]
-		type = Varadd
-		trigger1 = AnimElem = 6
-		fVar(11) = 5
-		persistent = 0
- 		ignorehitpause = 1
-
-
-	[State -1,カウンター補正]
-		Type=VarSet
-		Trigger1=AnimElem = 6
-		fvar(0)=fvar(0)*0.80
-		persistent = 0
- 		ignorehitpause = 1
-
-
-
-; Hitsparks (Accelerator)
-	[State 200, 線形ヒットエフェ]
-		type = explod
-		trigger1= animelem=6
-		anim = 13520+random%10
-		id=13520
-		postype = p2
-		Pos = 0,floor(-45*const(Size.yScale))
-		pausemovetime = 999
-		supermovetime = 999
-		ownpal = 1
-		scale = 0.5,0.5
-		removetime=-2
-		sprpriority = 9
-		persistent = 0
-		ignorehitpause = 1
-
-; Hitsparks (Accelerator)
-	[State 200, 線形ヒットエフェ]
-		type = explod
-		trigger1= animelem=6
-		anim = 13520+random%10
-		id=13520
-		postype = p2
-		Pos = 0,floor(-45*const(Size.yScale))
-		pausemovetime = 999
-		supermovetime = 999
-		ownpal = 1
-		scale = 0.5,0.5
-		removetime=-2
-		sprpriority = 9
-		persistent = 0
-		ignorehitpause = 1
-
- [State 430,V1=1]
-		Type=VarSet
-		Trigger1=animelem=6
-		var(1)=1
-ignorehitpause = 1
-;[State 810, Throw 11]
-;type = TargetState
-;trigger1 = AnimElem = 11
-;value = 821
-
-
-[State 810, Pos 15]
-type = PosAdd
-trigger1 = AnimElem = 15
-x = -10
-
-[State 810, State End]
-type = ChangeState
-trigger1 = AnimTime = 0
-value = 0
-ctrl = 1
-
-;---------------------------------------------------------------------------
-;Thrown
-; (a custom gethit state)
-; Description: This is the state that the opponent changes to after being
-;     hit by KFM's throw HitDef. The important thing here is to use a
-;     ChangeAnim2 controller. The difference between ChangeAnim2 and
-;     ChangeAnim is that ChangeAnim2 changes the player's animation to
-;     an action in the AIR file of the attacker (in this case, kfm.air),
-;     whereas ChangeAnim always changes the player to an action in his
-;     own AIR file. Look at Action 820 in kfm.air for some extra
-;     comments.
-[Statedef 820]
-type    = A
-movetype= H
-physics = N
-velset = 0,0
-
-[State 820, 1]
-type = ChangeAnim2
-Trigger1 = Time = 0
-value = 820
-
-
-[State 0, Gravity]
-type = Gravity
-trigger1 = time>24
-;ignorehitpause = 
-;persistent = 
-;In case attacker loses binding on player for any reason, this controller
-;guarantees that the player will never get stuck in this thrown state.
-[State 820, 2]
-type = SelfState
-trigger1 = !gethitvar(isbound)
-value = 5050
-
-;---------------------------------------------------------------------------
-;Thrown by Kung Fu Throw - thrown into the air
-; (a custom gethit state)
-; Description: This state has the opponent flying through the air and
-;     falling down onto the ground. The SelfState controller sets the
-;     opponent back using to his own state file when he his the ground.
-;     Controllers 821,2 and 821,3 allow the opponent to recover by
-;     hitting his recovery command when he is falling.
-
 

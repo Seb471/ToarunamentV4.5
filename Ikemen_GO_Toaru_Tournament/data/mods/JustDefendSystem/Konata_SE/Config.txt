@@ -1,0 +1,230 @@
+;==================< INITIALIZE >========================================
+
+;Initialize Start Round
+[Statedef 5900]
+type = S
+
+;==========================================================================
+
+[State 5900, First Battle]
+type = VarSet
+trigger1 = !roundsexisted && matchno = 1
+fvar(38) = 0
+
+[state 5900, Reset Variables]
+type = varrangeset
+trigger1 = !fvar(38)
+first = 0
+last = 59
+value = 0
+[state 5900, Reset Variables]
+type = varrangeset
+trigger1 = !fvar(38)
+first = 0
+last = 39
+fvalue = 0
+
+;___________________________________________________________________________
+
+;Palette Selector
+[State 5900, Palette Selector]
+type = VarSet
+trigger1 = 1
+var(28) = 1
+ignoreHitPause = 1
+;0 = No
+;1 = Yes
+;___________________________________________________________________________
+
+;Mode Selector
+[State 5900, Mode Selector]
+type = VarSet
+trigger1 = 1
+var(40) = 1
+ignoreHitPause = 1
+;0 = No
+; Palettes 01, 02, 03, 04, 05, 06  -> CUSTOM COMBO
+; Palettes 07, 08, 09              -> MAX MODE
+; Palettes 10, 11, 12              -> RAGE EXPLOSION
+;1 = Yes
+;___________________________________________________________________________
+
+;Hit Sparks / Hit Sounds
+[State 5900, Hit Sparks / Hit Sounds]
+type = VarSet
+trigger1 = 1
+var(44) = 2
+ignoreHitPause = 1
+;===<Hit Sparks>===
+; [PotS Style]
+;*0 = Only Orange
+;*1 = Only Red
+;*2 = Multi-Colored Type 1
+; Normal: Red	Special: Blue	Super: Purple(Front) & Blue(Back)
+;*3 = Multi-Colored Type 2
+; Normal: Red	Special: Blue	Super: Purple
+;
+; [CvS Style]
+;*4 = Multi-Colored
+; Normal: Red	Special: Blue	Super: Purple(Front) & Blue(Back)
+;
+;===<Hit Sounds>===
+;0-9   = PotS Style
+;10-19 = CvS Style
+;
+;---<For Example>---
+; 1 = [PotS Style Hit Sparks (Only Red)] + [PotS Style Hit Sounds]
+;12 = [PotS Style Hit Sparks (Multi-Colored Type 1)] + [CvS Style Hit Sounds]
+;14 = [CvS Style Hit Sparks (Multi-Colored)] + [CvS Style Hit Sounds]
+;___________________________________________________________________________
+
+;Default Mode Select
+[State 5900, Default Mode Select]
+type = VarSet
+trigger1 = !fvar(38)
+var(54) = 0
+ignoreHitPause = 1
+;0 = CUSTOM COMBO
+;1 = MAX MODE
+;2 = RAGE EXPLOSION
+;___________________________________________________________________________
+
+;Chain Combos
+[State 5900, Chain Combos]
+type = VarSet
+trigger1 = 1
+var(55) = 1
+ignoreHitPause = 1
+;0 = No
+;1 = Yes
+;___________________________________________________________________________
+
+;Special Finish
+[State 5900, Special Finish]
+type = VarSet
+trigger1 = 1
+var(56) = 1
+;0 = No
+;1 = Yes
+;2 = Yes (NoMusic)
+;3 = Yes (NoMusic + NoBarDisplay)
+;4 = Yes (NoMusic + NoBarDisplay + NoFG)
+;___________________________________________________________________________
+
+;Super Finish
+[State 5900, Super Finish]
+type = VarSet
+trigger1 = 1
+var(57) = 1
+;0 = No
+;1 = Yes
+;2 = Yes (NoMusic)
+;___________________________________________________________________________
+
+;Auto Config Change for Add004
+[State 5900, Auto Config Change for Add004]
+type = VarSet
+trigger1 = 1
+var(58) = 0
+;0 = No
+;1 = Yes
+;___________________________________________________________________________
+
+;AILevel for Simul with Player
+[State 5900, AILevel for Simul with Player]
+type = VarSet
+trigger1 = 1
+var(59) = 8
+ignoreHitPause = 1
+;1-2 = Easy
+;3-4 = Medium
+;5-6 = Hard
+;7-8 = Very Hard
+;9-? = AILevel in Option Mode
+;___________________________________________________________________________
+
+
+
+
+
+
+
+;=============================================================================
+;Do Not Edit Below This Line
+;=============================================================================
+
+;-----------------------------------------------------------------------------
+;Auto Config Change for Add004
+[State 5900, Palette Selector]
+type = VarSet
+triggerall = var(58)
+trigger1 = 1
+v = 28
+value = 0
+
+[State 5900, Mode Selector]
+type = VarSet
+triggerall = var(58)
+trigger1 = 1
+v = 40
+value = 0
+
+[State 5900, Tag Assist StateNo]
+type = VarSet
+triggerall = var(58)
+trigger1 = 1
+sysvar(0) = 1000
+;-----------------------------------------------------------------------------
+
+
+[State 5900, Pal Selector on]
+type=helper
+triggerall=var(28)&&!numhelper(256)&&!AILevel&&numenemy 
+trigger1= !roundsexisted && !fvar(38)
+trigger2= !var(27) 
+id=256
+stateno=256
+facing=facing
+ownpal=1
+size.xScale=0.5
+size.yScale=0.5
+[state 5900, No Palette selector]
+type = remappal
+trigger1 = !var(28)
+trigger2 = AILevel && !var(27)
+source = 1, 1
+dest = 1, palno
+ignorehitpause = 1
+[state 5900, No Palette selector & No Mode Selector]
+type = remappal
+triggerall = !var(40) && var(54) < 3 && palno>6
+trigger1 = !var(28)
+trigger2 = AILevel && !var(27)
+source = 1, 1
+dest = 1, palno - 6
+ignorehitpause = 1
+
+[State 5900, No Mode Selector]
+type = VarSet
+triggerall = var(54) < 3
+triggerall = !var(40) || AILevel
+trigger1 =!roundsexisted && !fvar(38)
+v = 54
+value = ifelse(palno>9, ifelse(!var(54),2,ifelse(var(54)=1,0,1)), ifelse(palno>6, ifelse(!var(54),1,ifelse(var(54)=1,2,0)), var(54)))
+
+
+[State 5900, Turns Intro]
+type = ChangeState
+trigger1 = TeamMode = Turns
+trigger1 = !RoundsExisted && RoundNo >= 2
+value = 6900
+
+[State 5900, Intro Decider]
+type = ChangeState
+trigger1 = RoundNo = 1
+value = 191
+
+[State 5900, End]
+type = ChangeState
+trigger1 = 1
+value = 0

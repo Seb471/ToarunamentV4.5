@@ -1,0 +1,24 @@
+Hello there, it's been quite some time hasn't it ?
+I can say that after a long time of being busy (and lazy), the 2nd update of universalisation of systems is done and, for my part, I'll likely get back to making new chars or improving some existing ones... when I've got the time.
+As for what this update brings here are the changes :
+- Added 3 new system mechanics:
+	- Push block (defensive mechanic costing 1 bar, with input 6x)
+	- Guard cancel (defensive mechanic costing 1/2 bar, with input 623x)
+	- Cancel assault (offensive mechanic which is a mash of purple roman cancel and drive rush, with input 66 during a normal attack or grab)
+- Added some voicelines/sfx/sprites to characters
+- Added portraits to every character for real
+- Fixed a lifebar bug
+
+As for individual character changes :
+
+- Kanzaki no longer can stance cancel out of grab
+- Yuriko's grab is put on the correct spot (x), back grab and grab tech implemented
+- Lola Stuart benefitted in an overhaul in sfx by changing sounds and adding voicelines and some sprites and some miscellaneous balance changes, implemented back grab and grab tech
+- Accelerator (Sisters) fixed the bug pertaining to his vector shield mechanic which wouldn't consume power
+
+If there are other changes I did that I did not mention... I likely forgot...
+
+Other than this, I wish you all a late Merry Christmas and a soon Happy New Year.
+
+
+NOTICE SELF : MOTIVATE YOURSELF TO FINISH THIS UPDATE BEFORE THE END OF THE YEAR, YOU CAN DO IT !
