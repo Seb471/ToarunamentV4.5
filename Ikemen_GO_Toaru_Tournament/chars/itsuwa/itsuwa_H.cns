@@ -1,0 +1,352 @@
+;Super Fire Lunge
+[Statedef 2020]
+type    = S
+movetype= A
+physics = S
+velset = 0,0
+anim = 1010
+ctrl = 0
+poweradd = fvar(11)
+
+[State 200,V1=0]
+Type=VarSet
+Trigger1=time=0
+var(1)=0
+
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = time<=32
+flag = nobardisplay
+
+[State 0, BGPalFX]
+type = BGPalFX
+trigger1 = animelemtime(1) = 0
+time = 32
+add = -256,-256,-256
+;mul = 256,256,256
+;sinadd = -256,-256,-256,128
+;invertall = 0
+;color = 256
+;ignorehitpause = 
+;persistent = 
+
+	[State -1,????]
+		Type=SuperPause
+		Trigger1=Time=0
+		Time=32
+		MoveTime=10
+		Sound=-1
+		darken=0
+		P2defmul=1
+		Anim=-1
+;		IgnoreHitPause=1
+;		persistent = 0
+
+[State 0, NotHitBy]
+type = NotHitBy
+trigger1 = animelemtime(6)>=0
+value = SCA, NP, SP, HP, NA
+;value2 = S,NA
+time = 1
+;ignorehitpause = 
+;persistent = 
+
+[State 1200, VelSet]
+Type = VelSet
+Trigger1 = AnimElem = 7
+x = 30
+y = -1
+
+[State 1200, Idle]
+type = StateTypeSet
+trigger1 = AnimElemTime(8) >= 0
+StateType = A
+
+[State 1200, VelSet]
+Type = VelSet
+Trigger1 = AnimElem = 8
+x = 20
+y = -2
+
+[State 1200, VelAdd]
+Type = VelAdd
+Trigger1 = animelemtime(8) > 0
+y = .55
+
+[State 1200, ChangeState]
+type = ChangeState
+trigger1 = pos y > 0
+trigger1 = vel y > 0
+trigger1 = animelemtime(3)>0
+value = 2050
+
+;Fire Slam
+[StateDef 2050]
+type = A
+physics = N
+moveType = A
+anim = 2050
+ctrl = 0
+velSet = 0,0
+powerAdd = fvar(11)
+faceP2 = 0
+
+[State 1210, PosSet]
+Type = PosSet
+Trigger1 = time = 0
+y = 0
+
+[State 200,V1=1]
+		Type=VarSet
+		Trigger1=MoveContact
+		var(1)=1
+		ignorehitpause = 1
+
+[State 1211, End]
+type = ChangeState
+trigger1 = animtime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+;White explosion
+[Statedef 2620]
+type    = S
+movetype = A
+physics = S
+ctrl = 0
+anim = 2620
+sprpriority = 1
+;poweradd = -1000
+
+
+[State 0, SuperPause]
+type = SuperPause
+trigger1 = time = 0
+time = 30
+movetime = 9
+anim = -1
+sound = -1
+pos = 0,0
+darken = 0
+p2defmul = 1
+poweradd = 0
+unhittable = 1
+;ignorehitpause = 
+;persistent = 
+
+[State 1000, Sekkarou]
+type = Helper
+trigger1 =animelem=1
+helpertype = normal ;player
+name ="Sekkarou"
+ID =7100
+stateno =7100
+pos = 0,0
+postype = p1
+ownpal = 1
+persistent=0
+size.xScale = 0.3
+size.yScale = 0.3
+supermovetime = 9999
+
+[State 0, BGPalFX]
+type = BGPalFX
+trigger1 = time = 0
+time = 30
+add = -256,-256,-256
+;mul = 256,256,256
+;sinadd = 0,0,0,10
+;invertall = 0
+;color = 256
+;ignorehitpause = 
+;persistent = 
+
+[State ]
+Type = Helper
+Trigger1 = time = 0
+StateNo = 6010
+ID = 10001
+Pos = 12,-63
+PosType = P1
+Ownpal = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State 0, Helper]
+type = Helper
+trigger1 = time=9
+helpertype = normal ;player
+name = "White explosion 1"
+ID = 2625
+stateno = 2625
+pos = 150,-60
+postype = p1    ;p2,front,back,left,right
+facing = 1
+keyctrl = 0
+ownpal = 1
+supermovetime = 21
+pausemovetime = 0
+;ignorehitpause
+persistent=0
+
+[State 0, Helper]
+type = Helper
+trigger1 = animelem=5
+helpertype = normal ;player
+name = "White explosion 2"
+ID = 2626
+stateno = 2625
+pos = 0,-60
+postype = p2    ;p2,front,back,left,right
+facing = 1
+keyctrl = 0
+ownpal = 1
+supermovetime = 0
+pausemovetime = 0
+;ignorehitpause
+persistent=0
+
+
+[State 1000, Hit]
+type = hitdef
+triggerall=!movecontact && !movereversed
+trigger1 = time = 0
+attr = S, SA
+hitflag = MAF
+guardflag = MA
+priority = 4, Hit
+damage = ceil(50*fvar(10)), 5
+;getPower = ifElse(!var(13), 36, 18) * (!var(20)&&!var(53)), 10 * (!var(20)&&!var(53))
+;givePower = 18, 18
+pausetime = 12,12
+animtype = Hard
+air.animtype = Back
+fall.animtype = Back
+ground.type = Low
+air.type = Low
+ground.hittime = 30
+ground.slidetime = 30
+guard.hittime = 18
+air.hittime = 120
+ground.velocity = -4.49, 0
+guard.velocity = -4.49
+air.velocity = -3.31, -4.24
+yaccel = 0.58
+fall = 0
+air.fall = 1
+fall.recover = 1
+fall.recovertime = 120;37
+forcestand = 1
+sparkno = S6001
+guard.sparkno = S6100
+sparkxy = -10,-20
+HitSound=S20,0                  ;Sound to play on hit
+GuardSound=S120,0                ;Sound to play on guard
+ground.cornerpush.veloff = -fvar(11)*0.444
+Air.cornerpush.veloff= -fvar(11)*0.444
+envshake.time = 14
+envshake.ampl = 4
+envshake.freq = 120
+
+[State 1211, End]
+type = ChangeState
+trigger1 = animtime = 0
+value = 0
+ctrl = 1
+
+
+;---------------------------------------------------------------------------
+;Punishment for murder
+[Statedef 2630]
+type    = A
+physics = A
+ctrl = 0
+anim = 105
+sprpriority = 1
+poweradd = -2000
+
+[State 200,V1=0]
+		Type=VarSet
+		Trigger1=time=0
+		var(1)=0
+
+[State -1,îƒópäiî[]
+		type = Varset
+		Trigger1=Time=0
+		fvar(10)= fvar(0)
+		persistent = 0
+ 		ignorehitpause = 1
+
+	[State -1,ç≈í·çUåÇï€è·]
+		type = Varset
+		Trigger1=Time=0
+		Trigger1=fvar(0)<=0.35
+		fvar(10)= 0.35
+		persistent = 0
+ 		ignorehitpause = 1
+
+[State 105, 1]
+type = VelSet
+trigger1 = Time = 0
+x = const(velocity.run.back.x)*(1+0.25*(var(20)=1 || (var(20)=0 && var(21)=1)))*1.5
+y = const(velocity.run.back.y)*(1+0.25*(var(20)=4 || (var(20)=0 && var(21)=4)))
+
+
+[State 0, SuperPause]
+type = SuperPause
+trigger1 = time = 0
+time = 30
+anim = -1
+sound = -1
+pos = 0,0
+darken = 0
+p2defmul = 1
+poweradd = 0
+unhittable = 1
+;ignorehitpause = 
+;persistent = 
+
+[State 0, BGPalFX]
+type = BGPalFX
+trigger1 = time = 0
+time = 30
+add = -256,-256,-256
+;mul = 256,256,256
+;sinadd = 0,0,0,10
+;invertall = 0
+;color = 256
+;ignorehitpause = 
+;persistent = 
+
+[State ]
+Type = Helper
+Trigger1 = time = 0
+StateNo = 6010
+ID = 10001
+Pos = 12,-63
+PosType = P1
+Ownpal = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State 0, Helper]
+type = Helper
+trigger1 = time = 5
+helpertype = normal ;player
+name = "slow zone"
+ID = 2635
+stateno = 2634 
+pos = 0,0
+postype = back    ;p2,front,back,left,right
+facing = 1
+keyctrl = 0
+ownpal = 1
+supermovetime = 0
+pausemovetime = 0
+
+[State 105, 3]
+type = ChangeState
+trigger1 = Vel Y > 0
+trigger1 = Pos Y >= 0
+value = 106

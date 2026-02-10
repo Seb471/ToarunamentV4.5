@@ -9,7 +9,7 @@ if(roundState=2 && (stateNo = [200,999] || hitDefAttr = SCA ,NA,NP,NT) && (prevS
 
 [StateDef 31143512;
 type: S;
-movetype: A;
+movetype: I;
 physics: S;
 anim: 100;
 ctrl: 0;
@@ -93,5 +93,19 @@ if(stateNo = [0,199] ){
 }
 let condition = call cancelAssault();
 if ($condition){
+	mapSet{
+		map: "removePower";
+		value: 1;
+	}
 	changeState{value: 31143512}
+}
+
+if (prevStateNo=31143512 && movehit && map(removePower)=1){
+	targetPowerAdd{
+		value: -500;
+	}
+	mapSet{
+		map: "removePower";
+		value: 0;
+	}
 }

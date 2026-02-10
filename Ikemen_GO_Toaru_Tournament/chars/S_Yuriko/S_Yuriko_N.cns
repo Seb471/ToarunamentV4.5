@@ -590,7 +590,7 @@
 		attr = S, NA
 		animtype  = hard
 		damage    = 55 * Fvar(3)
-		guardflag = H
+		guardflag = M
 		pausetime = 5,5
 		hitflag = MAF
 		sparkno = -1
@@ -1122,7 +1122,7 @@
 		priority  = 3
 		animtype  = medium
 		hitflag = MAF
-		guardflag = H
+		guardflag = L
 		pausetime = 5,5
 		sparkno = -1
 		sparkxy = 0,-30
@@ -1248,7 +1248,7 @@
 		priority  = 3
 		animtype  = up
 		hitflag = MAFD
-		guardflag = AH
+		guardflag = L
 		pausetime = 5,5
 		sparkno = -1
 		sparkxy = 0,-30

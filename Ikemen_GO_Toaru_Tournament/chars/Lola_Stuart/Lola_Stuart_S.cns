@@ -7,6 +7,26 @@ anim=1500
 ctrl=0
 sprpriority=2
 
+[State 200,V1=0]
+		Type=VarSet
+		Trigger1=time=0
+		var(1)=0
+
+[State -1,”Ä—pŠi”[]
+		type = Varset
+		Trigger1=Time=0
+		fvar(10)= fvar(0)
+		persistent = 0
+ 		ignorehitpause = 1
+
+	[State -1,Å’áUŒ‚•Ûá]
+		type = Varset
+		Trigger1=Time=0
+		Trigger1=fvar(0)<=0.10
+		fvar(10)= 0.10
+		persistent = 0
+ 		ignorehitpause = 1
+
 [State 191, Snd 1]
 type = PlaySnd
 trigger1 = AnimElem = 6
@@ -157,6 +177,26 @@ physics=S
 anim=1505
 ctrl=0
 sprpriority=2
+
+[State 200,V1=0]
+		Type=VarSet
+		Trigger1=time=0
+		var(1)=0
+
+[State -1,”Ä—pŠi”[]
+		type = Varset
+		Trigger1=Time=0
+		fvar(10)= fvar(0)
+		persistent = 0
+ 		ignorehitpause = 1
+
+	[State -1,Å’áUŒ‚•Ûá]
+		type = Varset
+		Trigger1=Time=0
+		Trigger1=fvar(0)<=0.10
+		fvar(10)= 0.10
+		persistent = 0
+ 		ignorehitpause = 1
 
 [State 191, Snd 1]
 type = PlaySnd
@@ -340,6 +380,26 @@ anim=1506
 ctrl=0
 poweradd=-1000
 sprpriority=2
+
+[State 200,V1=0]
+		Type=VarSet
+		Trigger1=time=0
+		var(1)=0
+
+[State -1,”Ä—pŠi”[]
+		type = Varset
+		Trigger1=Time=0
+		fvar(10)= fvar(0)
+		persistent = 0
+ 		ignorehitpause = 1
+
+	[State -1,Å’áUŒ‚•Ûá]
+		type = Varset
+		Trigger1=Time=0
+		Trigger1=fvar(0)<=0.10
+		fvar(10)= 0.10
+		persistent = 0
+ 		ignorehitpause = 1
 
 [State 191, Snd 1]
 type = PlaySnd

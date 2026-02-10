@@ -8,6 +8,21 @@ anim = 1000
 ctrl = 0
 poweradd = fvar(11)
 
+[State 200,V1=0]
+Type=VarSet
+Trigger1=time=0
+var(1)=0
+
+[State 0, NotHitBy]
+type = NotHitBy
+trigger1 = animelemtime(4)<0
+value = SCA,NP,SP
+;value2 = S,NA
+time = 1
+;ignorehitpause = 
+;persistent = 
+
+
 [State 0, VarSet]
 type = VarSet
 trigger1 = pos y > 0
@@ -36,7 +51,7 @@ pos = ifelse(p2dist x >= 100 && p2dist x <= 200, p2dist x, 100),enemy,const(size
 postype = p1    ;p2,front,back,left,right
 facing = 1
 keyctrl = 0
-ownpal = 0
+ownpal = 1
 supermovetime = 0
 pausemovetime = 0
 
@@ -52,7 +67,7 @@ pos = ifelse(p2dist x >= 100 && p2dist x <= 200, p2dist x, 100),0
 postype = p1    ;p2,front,back,left,right
 facing = 1
 keyctrl = 0
-ownpal = 0
+ownpal = 1
 supermovetime = 0
 pausemovetime = 0
 
@@ -62,10 +77,10 @@ trigger1 = time = 0
 trigger1 = var(21) = 3
 helpertype = normal ;player
 name = "earth"
-ID = 240130
+ID = 24013
 stateno = 24013
 keyctrl = 0
-ownpal = 0
+ownpal = 1
 SuperMoveTime = 9999
 PauseMoveTime = 9999
 
@@ -81,7 +96,7 @@ pos = 50,-62.5
 postype = p1    ;p2,front,back,left,right
 facing = 1
 keyctrl = 0
-ownpal = 0
+ownpal = 1
 supermovetime = 0
 pausemovetime = 0
 
@@ -123,6 +138,21 @@ velset = 0,0
 anim = 1010
 ctrl = 0
 poweradd = fvar(11)
+
+[State 200,V1=0]
+Type=VarSet
+Trigger1=time=0
+var(1)=0
+
+[State 0, NotHitBy]
+type = NotHitBy
+trigger1 = animelemtime(6)>=0
+trigger1 = animelemtime(9)<0
+value = SCA,NP,SP
+;value2 = S,NA
+time = 1
+;ignorehitpause = 
+;persistent = 
 
 [State 0, VarSet]
 type = VarSet
@@ -167,7 +197,7 @@ pos = ifelse(p2dist x >= 100 && p2dist x <= 200, p2dist x, 100),enemy,const(size
 postype = p1    ;p2,front,back,left,right
 facing = 1
 keyctrl = 0
-ownpal = 0
+ownpal = 1
 supermovetime = 0
 pausemovetime = 0
 size.xscale = 1.25
@@ -185,7 +215,7 @@ pos = ifelse(p2dist x >= 100 && p2dist x <= 200, p2dist x, 100),0
 postype = p1    ;p2,front,back,left,right
 facing = 1
 keyctrl = 0
-ownpal = 0
+ownpal = 1
 supermovetime = 0
 pausemovetime = 0
 size.xscale = 1.25
@@ -197,10 +227,10 @@ trigger1 = time = 0
 trigger1 = var(21) = 3
 helpertype = normal ;player
 name = "earth"
-ID = 240131
+ID = 24013
 stateno = 24013
 keyctrl = 0
-ownpal = 0
+ownpal = 1
 SuperMoveTime = 9999
 PauseMoveTime = 9999
 
@@ -216,7 +246,7 @@ pos = 50,-62.5
 postype = p1    ;p2,front,back,left,right
 facing = 1
 keyctrl = 0
-ownpal = 0
+ownpal = 1
 supermovetime = 0
 pausemovetime = 0
 size.xscale = 1.25
@@ -281,6 +311,57 @@ Type = PosSet
 Trigger1 = time = 0
 y = 0
 
+[State 1210, Hit]
+type=hitdef
+triggerall=!movecontact && !movereversed
+trigger1= AnimElem = 1
+attr = A,SA
+hitflag = MAF
+guardflag = HA
+damage = ceil(50*fvar(0)), 5
+;getPower = ifElse(!var(13), 36, 18) * (!var(20)&&!var(53)), 10 * (!var(20)&&!var(53))
+;givePower = 18, 18
+pauseTime = 6,8
+guard.pauseTime = 6,6
+animtype = Hard
+air.animtype = Back
+fall.animtype = Back
+ground.type = High
+air.type = Low
+ground.hittime = 26
+ground.slidetime = 26
+guard.hittime = 26
+air.hittime = 120
+airguard.ctrltime = 16
+ground.velocity = -4, 15
+ground.cornerPush.velOff = 0
+guard.velocity = -4
+guard.cornerPush.velOff = 0
+air.velocity = -4, 15
+air.cornerPush.velOff = 0
+airguard.velocity = -5, 0
+airguard.cornerPush.velOff = 0
+yAccel = 0.58
+fall = 1
+fall.recover = 0
+fall.recoverTime = 120
+HitSound=S20,0                  ;Sound to play on hit
+GuardSound=S120,0                ;Sound to play on guard
+sparkno = S6001
+guard.sparkno = S6100
+sparkxy = -10,-20
+p2facing = 1
+id = 1050
+
+[State 1210, p2state]
+type=targetstate
+trigger1= movehit && numtarget(1050)
+trigger1= target(1050),Movetype=H
+ID=1050
+value=1060
+ignorehitpause=1
+persistent=0
+
 [State 1210, Sekkarou]
 type = Helper
 trigger1 =animelem=3
@@ -311,6 +392,12 @@ type = StateTypeSet
 trigger1 = AnimElemTime(2) >= 0
 MoveType = I
 
+[State 200,V1=1]
+		Type=VarSet
+		Trigger1=MoveContact
+		var(1)=1
+		ignorehitpause = 1
+
 [State 1210, ChangeState]
 type = ChangeState
 trigger1 = pos y > 0
@@ -338,22 +425,6 @@ type = PosSet
 trigger1 = 1
 y = 0
 
-[State 1211, Landing Dust Explod]
-type = null
-trigger1 = !Time
-anim = 8102
-sprPriority = -3
-posType = P1
-scale = 0.5,0.5
-pauseMoveTime = -1
-superMoveTime = -1
-ownPal = 1
-
-[State 1211, Landing Sound]
-type = null
-trigger1 = !Time
-value = 52,0
-
 [State 0, VarSet]
 type = VarSet
 trigger1 = var(22) = 1
@@ -376,6 +447,46 @@ velset = 0,0
 anim = 1100
 ctrl = 0
 poweradd = fvar(11)
+
+[State 200,V1=0]
+Type=VarSet
+Trigger1=time=0
+var(1)=0
+
+[State 220, Hit]
+type=hitdef
+triggerall=!movecontact && !movereversed
+trigger1= time=0
+attr = S,SA
+hitflag = MAF
+guardflag = M
+damage = ceil(60*fvar(0)), 6
+;getpower = 30 * (!var(20)&&!var(53)), 0
+;givepower = 30, 30
+pausetime = 12,12
+guard.pausetime = 12,12
+animtype = Hard
+air.animtype = Back
+fall.animtype = Back
+ground.type = High
+air.type = Low
+ground.hittime = 18
+ground.slidetime = 18
+guard.hittime = 18
+air.hittime = 120
+ground.velocity = -9
+;ifElse(PrevStateNo = 700, -6.46, ifElse(var(20), -4.5, -9)), ifElse(PrevStateNo = 700, -5.25, 0)
+ground.cornerPush.velOff = 0
+guard.velocity = -9
+guard.cornerPush.velOff = 0
+air.velocity = -5.25, -6
+air.cornerPush.velOff = 0
+yAccel = 0.58
+HitSound=S20,0                  ;Sound to play on hit
+GuardSound=S120,0                ;Sound to play on guard
+sparkno = S6001
+guard.sparkno = S6100
+sparkxy = -10,-20
 
 [State 0, VarSet]
 type = VarSet
@@ -410,7 +521,7 @@ pos = ifelse(p2dist x <= 100, p2dist x, 100),enemy,const(size.head.pos.y)
 postype = p1    ;p2,front,back,left,right
 facing = 1
 keyctrl = 0
-ownpal = 0
+ownpal = 1
 supermovetime = 0
 pausemovetime = 0
 
@@ -426,7 +537,7 @@ pos = ifelse(p2dist x <= 100, p2dist x, 100),0
 postype = p1    ;p2,front,back,left,right
 facing = 1
 keyctrl = 0
-ownpal = 0
+ownpal = 1
 supermovetime = 0
 pausemovetime = 0
 
@@ -436,10 +547,10 @@ trigger1 = time = 0
 trigger1 = var(21) = 3
 helpertype = normal ;player
 name = "earth"
-ID = 240130
+ID = 24013
 stateno = 24013
 keyctrl = 0
-ownpal = 0
+ownpal = 1
 SuperMoveTime = 9999
 PauseMoveTime = 9999
 
@@ -455,11 +566,16 @@ pos = 25,-62.5
 postype = p1    ;p2,front,back,left,right
 facing = 1
 keyctrl = 0
-ownpal = 0
+ownpal = 1
 supermovetime = 0
 pausemovetime = 0
 
 
+[State 200,V1=1]
+		Type=VarSet
+		Trigger1=MoveContact
+		var(1)=1
+		ignorehitpause = 1
 
 [State 200, 3]
 type = ChangeState
@@ -467,7 +583,7 @@ trigger1 = AnimTime = 0
 value = 0
 ctrl = 1
 
-;Water wallbounce
+;Special Water slash
 [Statedef 1110]
 type    = S
 movetype= A
@@ -477,9 +593,57 @@ anim = 1110
 ctrl = 0
 poweradd = fvar(11)
 
+[State 200,V1=0]
+Type=VarSet
+Trigger1=time=0
+var(1)=0
+
+[State 220, Hit]
+type=hitdef
+triggerall=target(1025),stateno!=1028
+triggerall=!movecontact && !movereversed
+trigger1= time=0
+attr = S,SA
+hitflag = MAF
+guardflag = M
+damage = ceil(60*fvar(0)), 6
+;getpower = 30 * (!var(20)&&!var(53)), 0
+;givepower = 30, 30
+pausetime = 12,12
+guard.pausetime = 12,12
+animtype = Hard
+air.animtype = Back
+fall.animtype = Back
+ground.type = High
+air.type = Low
+ground.hittime = 18
+ground.slidetime = 18
+guard.hittime = 18
+air.hittime = 120
+ground.velocity = -7,-8
+guard.velocity = -5
+air.velocity = -7,-8
+airguard.velocity = -5, -4
+yAccel = 0.58
+HitSound=S20,0                  ;Sound to play on hit
+GuardSound=S120,0                ;Sound to play on guard
+sparkno = S6001
+guard.sparkno = S6100
+sparkxy = -10,-20
+id = 1025
+
+[State 0, TargetState]
+type = TargetState
+triggerall = NumTarget(1025);()
+trigger1 =movehit
+value =1025
+ID = -1
+;ignorehitpause = 
+persistent = 0
+
 [State 0, VarSet]
 type = VarSet
-trigger1 = animelem = 4
+trigger1 = animelem = 3
 var(20) = 2
 ;ignorehitpause = 
 ;persistent = 
@@ -500,7 +664,7 @@ var(22) = 1
 
 [State 0, Helper]
 type = Helper
-trigger1 = animelem = 4
+trigger1 = animelem = 3
 helpertype = normal ;player
 name = "pentagram"
 ID = 24002
@@ -517,7 +681,7 @@ size.yscale = 0.5
 
 [State 0, Helper]
 type = Helper
-trigger1 = animelem = 6
+trigger1 = animelem = 4
 trigger1 = var(21) = 1
 helpertype = normal ;player
 name = "fire"
@@ -527,7 +691,7 @@ pos = ifelse(p2dist x <= 100, p2dist x, 100),enemy,const(size.head.pos.y)
 postype = p1    ;p2,front,back,left,right
 facing = 1
 keyctrl = 0
-ownpal = 0
+ownpal = 1
 supermovetime = 0
 pausemovetime = 0
 size.xscale = 1.25
@@ -535,7 +699,7 @@ size.yscale = 1.25
 
 [State 0, Helper]
 type = Helper
-trigger1 = animelem = 6
+trigger1 = animelem = 4
 trigger1 = var(21) = 2
 helpertype = normal ;player
 name = "water"
@@ -545,7 +709,7 @@ pos = ifelse(p2dist x <= 100, p2dist x, 100),0
 postype = p1    ;p2,front,back,left,right
 facing = 1
 keyctrl = 0
-ownpal = 0
+ownpal = 1
 supermovetime = 0
 pausemovetime = 0
 size.xscale = 1.25
@@ -557,16 +721,16 @@ trigger1 = time = 0
 trigger1 = var(21) = 3
 helpertype = normal ;player
 name = "earth"
-ID = 240131
+ID = 24013
 stateno = 24013
 keyctrl = 0
-ownpal = 0
+ownpal = 1
 SuperMoveTime = 9999
 PauseMoveTime = 9999
 
 [State 0, Helper]
 type = Helper
-trigger1 = animelem = 6
+trigger1 = animelem = 4
 trigger1 = var(21) = 4
 helpertype = normal ;player
 name = "atmosphere"
@@ -576,11 +740,18 @@ pos = 25,-62.5
 postype = p1    ;p2,front,back,left,right
 facing = 1
 keyctrl = 0
-ownpal = 0
+ownpal = 1
 supermovetime = 0
 pausemovetime = 0
 size.xscale = 1.25
 size.yscale = 1.25
+
+
+[State 200,V1=1]
+		Type=VarSet
+		Trigger1=MoveContact
+		var(1)=1
+		ignorehitpause = 1
 
 [State 200, 3]
 type = ChangeState
@@ -598,6 +769,76 @@ ctrl = 0
 velSet = 0,0
 powerAdd = fvar(11)
 faceP2 = 1
+
+[State 200,V1=0]
+Type=VarSet
+Trigger1=time=0
+var(1)=0
+
+	[State -1,îƒópäiî[]
+		type = Varset
+		Trigger1=Time=0
+		fvar(10)= fvar(0)
+		persistent = 0
+ 		ignorehitpause = 1
+
+	[State -1,ç≈í·çUåÇï€è·]
+		type = Varset
+		Trigger1=Time=0
+		Trigger1=fvar(0)<=0.18
+		fvar(10)= 0.18*ifelse(fVar(11) < 30,1,.5)
+		persistent = 0
+ 		ignorehitpause = 1
+
+[State 1400, Hit]
+type=hitdef
+triggerall=!movecontact && !movereversed
+trigger1= time=0
+attr = A,SA
+hitflag = MAF
+guardflag = HA
+damage = ceil(70*fvar(10)), 7
+;getPower = ifElse(!var(13), 36, 18) * (!var(20)&&!var(53)), 10 * (!var(20)&&!var(53))
+;givePower = 18, 18
+pauseTime = 12,12
+animtype = Hard
+air.animtype = Back
+fall.animtype = Back
+ground.type = High
+air.type = Low
+ground.hittime = 18
+ground.slidetime = 18
+guard.hittime = 18
+air.hittime = 120
+airguard.ctrltime = 16
+ground.velocity = -1, 15
+ground.cornerPush.velOff = 0
+guard.velocity = -1
+guard.cornerPush.velOff = 0
+air.velocity = -1, 15
+air.cornerPush.velOff = 0
+airguard.velocity = -5, 5
+airguard.cornerPush.velOff = 0
+yAccel = 0.58
+fall = 1
+fall.recover = 0
+fall.recoverTime = 120
+sparkno = S6001
+guard.sparkno = S6100
+sparkxy = -10,-20
+HitSound=S20,0                  ;Sound to play on hit
+GuardSound=S120,0                ;Sound to play on guard
+p2facing = 1
+id = 1200
+
+[State 1400, p2state]
+type=targetstate
+trigger1= movehit && numtarget(1200)
+trigger1= target(1200),Movetype=H
+ID=1200
+value=1240
+ignorehitpause=1
+persistent=0
 
 [State 0, VarSet]
 type = VarSet
@@ -618,7 +859,7 @@ pos = 0,-pos y
 postype = p1    ;p2,front,back,left,right
 facing = 1
 keyctrl = 0
-ownpal = 0
+ownpal = 1
 supermovetime = 0
 pausemovetime = 0
 
@@ -628,10 +869,10 @@ trigger1 = time = 0
 trigger1 = var(21) = 3
 helpertype = normal ;player
 name = "earth"
-ID = 240130
+ID = 24013
 stateno = 24013
 keyctrl = 0
-ownpal = 0
+ownpal = 1
 SuperMoveTime = 9999
 PauseMoveTime = 9999
 
@@ -643,11 +884,11 @@ helpertype = normal ;player
 name = "atmosphere"
 ID = 240140
 stateno = 24014
-pos = 50,-50
+pos = 50,-37.5
 postype = p1    ;p2,front,back,left,right
 facing = 1
 keyctrl = 0
-ownpal = 0
+ownpal = 1
 supermovetime = 0
 pausemovetime = 0
 
@@ -675,6 +916,19 @@ trigger1 = animelemtime(3) < 0
 trigger2 = animelemtime(5) >= 0
 y = .45
 
+	[State 200 ÉmÉbÉNÉoÉbÉNÉJÉEÉìÉg]
+		type = Varadd
+		trigger1 = movehit
+		fvar(11) = 2
+		persistent = 0
+
+	[State -1,çUåÇï‚ê≥]
+		Type=VarSet
+		Trigger1=MoveHit=1
+		fvar(0)=fvar(0)*0.85
+		persistent = 0
+ 		ignorehitpause = 1
+
 [State 1210, ChangeState]
 type = ChangeState
 trigger1 = pos y > 0
@@ -692,6 +946,76 @@ velSet = 0,0
 powerAdd = fvar(11)
 faceP2 = 1
 
+[State 200,V1=0]
+Type=VarSet
+Trigger1=time=0
+var(1)=0
+
+	[State -1,îƒópäiî[]
+		type = Varset
+		Trigger1=Time=0
+		fvar(10)= fvar(0)
+		persistent = 0
+ 		ignorehitpause = 1
+
+	[State -1,ç≈í·çUåÇï€è·]
+		type = Varset
+		Trigger1=Time=0
+		Trigger1=fvar(0)<=0.30
+		fvar(10)= 0.30*ifelse(fVar(11) < 30,1,.5)
+		persistent = 0
+ 		ignorehitpause = 1
+
+[State 1400, Hit]
+type=hitdef
+triggerall=!movecontact && !movereversed
+trigger1= time=0
+attr = A,SA
+hitflag = MAF
+guardflag = HA
+damage = ceil(80*fvar(10)), 8
+;getPower = ifElse(!var(13), 36, 18) * (!var(20)&&!var(53)), 10 * (!var(20)&&!var(53))
+;givePower = 18, 18
+pauseTime = 12,12
+animtype = Hard
+air.animtype = Back
+fall.animtype = Back
+ground.type = High
+air.type = Low
+ground.hittime = 18
+ground.slidetime = 18
+guard.hittime = 18
+air.hittime = 120
+airguard.ctrltime = 16
+ground.velocity = -1, 15
+ground.cornerPush.velOff = 0
+guard.velocity = -1
+guard.cornerPush.velOff = 0
+air.velocity = -1, 15
+air.cornerPush.velOff = 0
+airguard.velocity = -5, 5
+airguard.cornerPush.velOff = 0
+yAccel = 0.58
+fall = 1
+fall.recover = 0
+fall.recoverTime = 120
+sparkno = S6001
+guard.sparkno = S6100
+sparkxy = -10,-20
+HitSound=S20,0                  ;Sound to play on hit
+GuardSound=S120,0                ;Sound to play on guard
+p2facing = 1
+id = 1210
+
+[State 1400, p2state]
+type=targetstate
+trigger1= movehit && numtarget(1210)
+trigger1= target(1210),Movetype=H
+ID=1210
+value=1240
+ignorehitpause=1
+persistent=0
+
 [State 0, VarSet]
 type = VarSet
 trigger1 = time=0
@@ -705,10 +1029,10 @@ trigger1 = time = 0
 trigger1 = var(21) = 3
 helpertype = normal ;player
 name = "earth"
-ID = 240131
+ID = 24013
 stateno = 24013
 keyctrl = 0
-ownpal = 0
+ownpal = 1
 SuperMoveTime = 9999
 PauseMoveTime = 9999
 
@@ -736,6 +1060,20 @@ trigger1 = animelemtime(3) < 0
 trigger2 = animelemtime(5) >= 0
 y = .45
 
+	[State 200 ÉmÉbÉNÉoÉbÉNÉJÉEÉìÉg]
+		type = Varadd
+		trigger1 = movehit
+		fvar(11) = 3
+		persistent = 0
+ 		ignorehitpause = 1
+
+	[State -1,çUåÇï‚ê≥]
+		Type=VarSet
+		Trigger1=MoveHit=1
+		fvar(0)=fvar(0)*0.45
+		persistent = 0
+ 		ignorehitpause = 1
+
 [State 1210, ChangeState]
 type = ChangeState
 trigger1 = pos y > 0
@@ -762,7 +1100,7 @@ pos = 50,-100
 postype = p1    ;p2,front,back,left,right
 facing = 1
 keyctrl = 0
-ownpal = 0
+ownpal = 1
 supermovetime = 0
 pausemovetime = 0
 
@@ -844,7 +1182,7 @@ size.yscale = 0.5
 
 [State 0, Helper]
 type = Helper
-trigger1 = animelem = 7
+trigger1 = animelem = 2
 trigger1 = var(21) = 1
 helpertype = normal ;player
 name = "fire"
@@ -854,7 +1192,7 @@ pos = ifelse(p2dist x <= 200, p2dist x, 200),enemy,const(size.head.pos.y)
 postype = p1    ;p2,front,back,left,right
 facing = 1
 keyctrl = 0
-ownpal = 0
+ownpal = 1
 supermovetime = 0
 pausemovetime = 0
 size.xscale = 1.25
@@ -862,7 +1200,7 @@ size.yscale = 1.25
 
 [State 0, Helper]
 type = Helper
-trigger1 = animelem = 7
+trigger1 = animelem = 2
 trigger1 = var(21) = 2
 helpertype = normal ;player
 name = "water"
@@ -872,7 +1210,7 @@ pos = ifelse(p2dist x <= 200, p2dist x, 200),0
 postype = p1    ;p2,front,back,left,right
 facing = 1
 keyctrl = 0
-ownpal = 0
+ownpal = 1
 supermovetime = 0
 pausemovetime = 0
 size.xscale = 1.25
@@ -890,7 +1228,7 @@ pos = 50,-25
 postype = p1    ;p2,front,back,left,right
 facing = 1
 keyctrl = 0
-ownpal = 0
+ownpal = 1
 supermovetime = 0
 pausemovetime = 0
 size.xscale = 1.25
@@ -931,6 +1269,111 @@ ctrl = 1
 	Anim=1300
 	Poweradd=FVar(11)
 
+[State 200,V1=0]
+Type=VarSet
+Trigger1=time=0
+var(1)=0
+
+	[State -1,îƒópäiî[]
+		type = Varset
+		Trigger1=Time=0
+		fvar(10)= fvar(0)
+		persistent = 0
+ 		ignorehitpause = 1
+
+	[State -1,ç≈í·çUåÇï€è·]
+		type = Varset
+		Trigger1=Time=0
+		Trigger1=fvar(0)<=0.20
+		fvar(10)= 0.20
+		persistent = 0
+ 		ignorehitpause = 1
+
+	[State 1550,NotHit]
+		Type=notHitBy
+		Trigger1=AnimElemTime(1)>=0
+		Trigger1=AnimElemTime(3)<0
+		value=SCA
+		Time=1
+
+	[State 1500,Hitdef]
+		Type=HitDef
+		;triggerall=!movecontact && !movereversed
+		trigger1 = animelemno(0)=[3,4]
+		trigger1 = time%2=0
+		Attr=S,SA
+		AnimType=down
+		Hitflag=MAF
+		Guardflag=M
+		Ground.Type=Low
+		SparkNo=S(IfElse(hitcount<1, -1,6005));6005
+		Guard.SparkNo=S6105
+		Sparkxy=-15,floor(-60*const(Size.yScale))
+		HitSound=S20,0                  ;Sound to play on hit
+		GuardSound=S120,0                ;Sound to play on guard
+		Damage=Ceil(20*fvar(10)),2
+		Priority=5,Hit
+		GetPower=4,1
+		GivePower=2,1
+		PauseTime=2,1
+		Ground.SlideTime=28
+		Guard.SlideTime=24
+		Ground.HitTime=26
+		Guard.HitTime=24
+		Guard.CtrlTime=24
+		Air.HitTime=24
+		Ground.velocity=-1,-6
+		Air.velocity=-1,-6
+		Guard.velocity=-8
+		AirGuard.velocity=-2.5,-5
+		Ground.cornerpush.veloff=0
+		Guard.cornerpush.veloff=-10
+		Air.cornerpush.veloff=0
+		AirGuard.cornerpush.veloff=0
+		Yaccel=0.45
+		fall=1
+		fall.recover=0
+
+	[State 1500,à íuå≈íË]
+		type = TargetBind
+		trigger1 = hitcount=1
+		Trigger1=AnimElemTime(3)>=0
+		Trigger1=AnimElemTime(5)<0
+		time = 1
+		pos = 50,0
+
+[State 200 ÉmÉbÉNÉoÉbÉNÉJÉEÉìÉg]
+		type = Varadd
+		Trigger1=movehit
+		fvar(11) = 5
+		persistent = 0
+ 		ignorehitpause = 1
+
+
+
+	[State -1,çUåÇï‚ê≥]
+		Type=VarSet
+		Trigger1=movehit
+		trigger1=fvar(0) <0.50
+		fvar(0)=fvar(0)*0.85
+		ignorehitpause = 1
+		persistent = 0
+
+[State -1,çUåÇï‚ê≥]
+		Type=VarSet
+		Trigger1=movehit
+		trigger1=fvar(0) >=0.50
+		fvar(0)=0.50
+		ignorehitpause = 1
+		persistent = 0
+ 		
+
+[State 1200,V1=1]
+		Type=VarSet
+		Trigger1=MoveContact && animelemtime(9) > 0
+		var(1)=1
+		ignorehitpause = 1
+
 [State 0, VarSet]
 type = VarSet
 trigger1 = pos y > 0
@@ -966,7 +1409,7 @@ pos = 50,-100
 postype = p1    ;p2,front,back,left,right
 facing = 1
 keyctrl = 0
-ownpal = 0
+ownpal = 1
 supermovetime = 0
 pausemovetime = 0
 
@@ -982,7 +1425,7 @@ pos = ifelse(p2dist x <= 100, p2dist x, 100),0
 postype = p1    ;p2,front,back,left,right
 facing = 1
 keyctrl = 0
-ownpal = 0
+ownpal = 1
 supermovetime = 0
 pausemovetime = 0
 
@@ -992,10 +1435,10 @@ trigger1 = time = 0
 trigger1 = var(21) = 3
 helpertype = normal ;player
 name = "earth"
-ID = 240130
+ID = 24013
 stateno = 24013
 keyctrl = 0
-ownpal = 0
+ownpal = 1
 SuperMoveTime = 9999
 PauseMoveTime = 9999
 
@@ -1011,7 +1454,7 @@ pos = 25,-62.5
 postype = p1    ;p2,front,back,left,right
 facing = 1
 keyctrl = 0
-ownpal = 0
+ownpal = 1
 supermovetime = 0
 pausemovetime = 0
 
@@ -1057,6 +1500,13 @@ pausemovetime = 0
 		Trigger1=AnimElemTime(7)>0
 		y=0.55
 
+
+[State 200,V1=1]
+		Type=VarSet
+		Trigger1=MoveContact
+		var(1)=1
+		ignorehitpause = 1
+
 [State 1404, End]
 type = ChangeState
 trigger1 = pos y > 0
@@ -1075,9 +1525,169 @@ ctrl = 0
 	Anim=1310
 	Poweradd=FVar(11)
 
+[State 200,V1=0]
+Type=VarSet
+Trigger1=time=0
+var(1)=0
+
+	[State -1,îƒópäiî[]
+		type = Varset
+		Trigger1=Time=0
+		fvar(10)= fvar(0)
+		persistent = 0
+ 		ignorehitpause = 1
+
+	[State -1,ç≈í·çUåÇï€è·]
+		type = Varset
+		Trigger1=Time=0
+		Trigger1=fvar(0)<=0.20
+		fvar(10)= 0.20
+		persistent = 0
+ 		ignorehitpause = 1
+
+[State 920, ÉqÉbÉgíËã`]
+type = HitDef
+trigger1 = animelem = 3
+attr = A, SA
+damage    = Ceil(40*fvar(10))
+hitflag		  = MAF
+guardflag = HA
+priority = 4
+sparkno = -1;s8300
+sparkxy = -10,-80
+HitSound=S20,0                  ;Sound to play on hit
+GuardSound=S120,0                ;Sound to play on guard
+animtype = Med
+ground.type = High
+ground.slidetime = 1
+ground.hittime  = 15
+guard.hittime  = 17
+ground.velocity = -3,-6
+air.velocity = -3,-6
+envshake.time = 4
+fall.recover = 0
+fall = 1
+
+	[State 1500,Hitdef]
+		Type=HitDef
+		;triggerall=!movecontact && !movereversed
+		trigger1 = animelemno(0)=[11,12]
+		trigger1 = time%2=0
+		Attr=S,SA
+		AnimType=down
+		Hitflag=MAF
+		Guardflag=M
+		Ground.Type=Low
+		SparkNo=S(IfElse(hitcount<1, -1,6005));6005
+		Guard.SparkNo=S6105
+		Sparkxy=-15,floor(-60*const(Size.yScale))
+		HitSound=S20,0                  ;Sound to play on hit
+		GuardSound=S120,0                ;Sound to play on guard
+		Damage=Ceil(20*fvar(10)),2
+		Priority=5,Hit
+		GetPower=4,1
+		GivePower=2,1
+		PauseTime=2,1
+		Ground.SlideTime=28
+		Guard.SlideTime=24
+		Ground.HitTime=26
+		Guard.HitTime=24
+		Guard.CtrlTime=24
+		Air.HitTime=24
+		Ground.velocity=-1,-6
+		Air.velocity=-1,-6
+		Guard.velocity=-8
+		AirGuard.velocity=-2.5,-5
+		Ground.cornerpush.veloff=0
+		Guard.cornerpush.veloff=-10
+		Air.cornerpush.veloff=0
+		AirGuard.cornerpush.veloff=0
+		Yaccel=0.45
+		fall=1
+		fall.recover=0
+		ID = 1310
+
+	[State 1500,à íuå≈íË]
+		type = TargetBind
+		trigger1 = hitcount=1
+		Trigger1=AnimElemTime(11)>=0
+		Trigger1=AnimElemTime(13)<0
+		ID = 1310
+		time = 1
+		pos = 50,-50
+
+	[State 1550,Hitdef]
+		Type=HitDef
+		Trigger1=AnimElem=13
+		Attr=S,SA
+		AnimType=down
+		Hitflag=MAF
+		Guardflag=M
+		Ground.Type=Low
+		SparkNo=S6015
+		Guard.SparkNo=S6105
+		Sparkxy=-15,floor(-60*const(Size.yScale))
+		HitSound=S20,0                  ;Sound to play on hit
+		GuardSound=S120,0                ;Sound to play on guard
+		Damage=Ceil(30*fvar(0)),12
+		Priority=5,Hit
+;		GetPower=31,16
+;		GivePower=31,16
+		PauseTime=4,4
+		Ground.SlideTime=28
+		Guard.SlideTime=24
+		Ground.HitTime=26
+		Guard.HitTime=24
+		Guard.CtrlTime=24
+		Air.HitTime=24
+		Ground.velocity=-4,-8.5
+		Air.velocity=-4,-8.5
+		Guard.velocity=-8
+		AirGuard.velocity=-2.5,-5
+		Ground.cornerpush.veloff=0
+		Guard.cornerpush.veloff=-10
+		Air.cornerpush.veloff=-fvar(11)*0.111
+		AirGuard.cornerpush.veloff=0
+		Yaccel=0.475
+		fall=1
+		fall.recover=0
+		persistent=0
+
+[State 200 ÉmÉbÉNÉoÉbÉNÉJÉEÉìÉg]
+		type = Varadd
+		Trigger1=movehit
+		fvar(11) = 5
+		persistent = 0
+ 		ignorehitpause = 1
+
+
+
+	[State -1,çUåÇï‚ê≥]
+		Type=VarSet
+		Trigger1=movehit
+		trigger1=fvar(0) <0.50
+		fvar(0)=fvar(0)*0.85
+		ignorehitpause = 1
+		persistent = 0
+
+[State -1,çUåÇï‚ê≥]
+		Type=VarSet
+		Trigger1=movehit
+		trigger1=fvar(0) >=0.50
+		fvar(0)=0.50
+		ignorehitpause = 1
+		persistent = 0
+ 		
+
+[State 1200,V1=1]
+		Type=VarSet
+		Trigger1=MoveContact && animelemtime(9) > 0
+		var(1)=1
+		ignorehitpause = 1
+
 [State 0, VarSet]
 type = VarSet
-trigger1 = animelem = 5
+trigger1 = animelem = 10
 var(20) = 4
 ;ignorehitpause = 
 ;persistent = 
@@ -1099,7 +1709,7 @@ var(22) = 1
 
 [State 0, Helper]
 type = Helper
-trigger1 = animelem = 5
+trigger1 = animelem = 10
 helpertype = normal ;player
 name = "pentagram"
 ID = 24004
@@ -1116,7 +1726,7 @@ size.yscale = 0.5
 
 [State 0, Helper]
 type = Helper
-trigger1 = animelem = 6
+trigger1 = animelem = 14
 trigger1 = var(21) = 1
 helpertype = normal ;player
 name = "fire"
@@ -1126,7 +1736,7 @@ pos = 50,-150
 postype = p1    ;p2,front,back,left,right
 facing = 1
 keyctrl = 0
-ownpal = 0
+ownpal = 1
 supermovetime = 0
 pausemovetime = 0
 size.xscale = 1.25
@@ -1134,7 +1744,7 @@ size.yscale = 1.25
 
 [State 0, Helper]
 type = Helper
-trigger1 = animelem = 2
+trigger1 = animelem = 1
 trigger1 = var(21) = 2
 helpertype = normal ;player
 name = "water"
@@ -1144,7 +1754,7 @@ pos = ifelse(p2dist x <= 100, p2dist x, 100),0
 postype = p1    ;p2,front,back,left,right
 facing = 1
 keyctrl = 0
-ownpal = 0
+ownpal = 1
 supermovetime = 0
 pausemovetime = 0
 size.xscale = 1.25
@@ -1156,16 +1766,16 @@ trigger1 = time = 0
 trigger1 = var(21) = 3
 helpertype = normal ;player
 name = "earth"
-ID = 240131
+ID = 24013
 stateno = 24013
 keyctrl = 0
-ownpal = 0
+ownpal = 1
 SuperMoveTime = 9999
 PauseMoveTime = 9999
 
 [State 0, Helper]
 type = Helper
-trigger1 = animelem = 2
+trigger1 = animelem = 3
 trigger1 = var(21) = 4
 helpertype = normal ;player
 name = "atmosphere"
@@ -1175,7 +1785,7 @@ pos = 25,-62.5
 postype = p1    ;p2,front,back,left,right
 facing = 1
 keyctrl = 0
-ownpal = 0
+ownpal = 1
 supermovetime = 0
 pausemovetime = 0
 size.xscale = 1.25
@@ -1183,39 +1793,39 @@ size.yscale = 1.25
 
 	[State 1500,vel]
 		Type=velSet
-		Trigger1=AnimElemtime(1)=1
+		Trigger1=AnimElemtime(9)=1
 		x=1
 
 	[State 1500,vel]
 		Type=velSet
-		Trigger1=AnimElemtime(2)=0
+		Trigger1=AnimElemtime(10)=0
 		x=2
 
 	[State 1500,vel]
 		Type=velSet
-		Trigger1=AnimElemtime(2)=2
+		Trigger1=AnimElemtime(10)=2
 		x=4
 
 	[State 1500,Air State]
 		Type=StateTypeSet
-		Trigger1=AnimElemtime(3)=0
+		Trigger1=AnimElemtime(11)=0
 		StateType=A
 		Physics=A
 
 	[State 1500,N State]
 		Type=StateTypeSet
-		Trigger1=AnimElemtime(7)=0
+		Trigger1=AnimElemtime(16)=0
 		Physics=N
 
 	[State 1500,vel]
 		Type=velSet
-		Trigger1=AnimElemtime(3)=0
+		Trigger1=AnimElemtime(11)=0
 		x=2
 		y=-12
 
 	[State 1500,vel]
 		Type=velSet
-		Trigger1=AnimElemtime(5)=0
+		Trigger1=AnimElemtime(13)=0
 		y=-5
 
 [State 0, PosFreeze]
@@ -1229,11 +1839,19 @@ value = 1
 
 	[State 1500,vel]
 		Type=velAdd
-		Trigger1=AnimElemTime(7)>0
+		Trigger1=AnimElemTime(16)>0
 		y=0.55
+
+
+[State 200,V1=1]
+		Type=VarSet
+		Trigger1=MoveContact
+		var(1)=1
+		ignorehitpause = 1
 
 [State 1404, End]
 type = ChangeState
+trigger1 = animelemtime(11)>0
 trigger1 = pos y > 0
 trigger1 = vel y > 0
 value = 52
@@ -1248,6 +1866,26 @@ velset = 0,0
 anim = 1400
 ctrl = 0
 poweradd = fvar(11)
+
+[State 200,V1=0]
+Type=VarSet
+Trigger1=time=0
+var(1)=0
+
+[State -1,îƒópäiî[]
+		type = Varset
+		Trigger1=Time=0
+		fvar(10)= fvar(0)
+		persistent = 0
+ 		ignorehitpause = 1
+
+	[State -1,ç≈í·çUåÇï€è·]
+		type = Varset
+		Trigger1=Time=0
+		Trigger1=fvar(0)<=0.15
+		fvar(10)= 0.15
+		persistent = 0
+ 		ignorehitpause = 1
 
 [State 0, VarSet]
 type = VarSet
@@ -1272,7 +1910,7 @@ var(22) = 1
 
 [State 0, Helper]
 type = Helper
-trigger1 = animelem = 4
+trigger1 = animelem = 3
 trigger1 = var(21) = 1
 helpertype = normal ;player
 name = "fire"
@@ -1282,7 +1920,7 @@ pos = ifelse(p2dist x <= 200, p2dist x, 200),enemy,const(size.head.pos.y)
 postype = p1    ;p2,front,back,left,right
 facing = 1
 keyctrl = 0
-ownpal = 0
+ownpal = 1
 supermovetime = 0
 pausemovetime = 0
 size.xscale = 1.25
@@ -1290,7 +1928,7 @@ size.yscale = 1.25
 
 [State 0, Helper]
 type = Helper
-trigger1 = animelem = 4
+trigger1 = animelem = 3
 trigger1 = var(21) = 2
 helpertype = normal ;player
 name = "water"
@@ -1300,7 +1938,7 @@ pos = ifelse(p2dist x <= 200, p2dist x, 200),0
 postype = p1    ;p2,front,back,left,right
 facing = 1
 keyctrl = 0
-ownpal = 0
+ownpal = 1
 supermovetime = 0
 pausemovetime = 0
 size.xscale = 1.25
@@ -1312,16 +1950,16 @@ trigger1 = time = 0
 trigger1 = var(21) = 3
 helpertype = normal ;player
 name = "earth"
-ID = 240131
+ID = 24013
 stateno = 24013
 keyctrl = 0
-ownpal = 0
+ownpal = 1
 SuperMoveTime = 9999
 PauseMoveTime = 9999
 
 [State 0, Helper]
 type = Helper
-trigger1 = animelem = 4
+trigger1 = animelem = 3
 trigger1 = var(21) = 4
 helpertype = normal ;player
 name = "atmosphere"
@@ -1331,7 +1969,7 @@ pos = 50,-62.5
 postype = p1    ;p2,front,back,left,right
 facing = 1
 keyctrl = 0
-ownpal = 0
+ownpal = 1
 supermovetime = 0
 pausemovetime = 0
 size.xscale = 1.25
@@ -1351,6 +1989,44 @@ persistent=0
 size.xScale = 0.3
 size.yScale = 0.3
 
+[State 1000, Hit]
+type = hitdef
+triggerall=!movecontact && !movereversed
+trigger1 = time = 0
+attr = S, SA
+hitflag = MAF
+guardflag = MA
+priority = 4, Hit
+damage = ceil(50*fvar(10)), 5
+;getPower = ifElse(!var(13), 36, 18) * (!var(20)&&!var(53)), 10 * (!var(20)&&!var(53))
+;givePower = 18, 18
+pausetime = 12,12
+animtype = Hard
+air.animtype = Back
+fall.animtype = Back
+ground.type = Low
+air.type = Low
+ground.hittime = 30
+ground.slidetime = 30
+guard.hittime = 18
+air.hittime = 120
+ground.velocity = -4.49, 0
+guard.velocity = -4.49
+air.velocity = -3.31, -4.24
+yaccel = 0.58
+fall = 0
+air.fall = 1
+fall.recover = 1
+fall.recovertime = 120;37
+forcestand = 1
+sparkno = S6001
+guard.sparkno = S6100
+sparkxy = -10,-20
+HitSound=S20,0                  ;Sound to play on hit
+GuardSound=S120,0                ;Sound to play on guard
+ground.cornerpush.veloff = -fvar(11)*0.444
+Air.cornerpush.veloff= -fvar(11)*0.444
+
 [State 1000, StateTypeSet: Idle]
 type = StateTypeSet
 trigger1 = AnimElemTime(7) >= 0
@@ -1364,13 +2040,35 @@ Trigger1 = command = "a" || command = "b" || command = "c"
 value = 1410
 ignorehitpause = 0
 
+	[State -1,çUåÇï‚ê≥,è„èëÇ´,ÉJÉEÉìÉ^Å[]
+		type =Varset
+		Trigger1=MoveHit=1
+		;rigger1=animelemtime(9)>=0
+		fvar(0)= fvar(0)*0.90
+		persistent = 0
+ 		ignorehitpause = 1
+
+[State 200 ÉmÉbÉNÉoÉbÉNÉJÉEÉìÉg]
+		type = Varadd
+		trigger1 = movehit
+		;trigger1=animelemtime(9)>=0
+		fVar(11) = 3
+		persistent = 0
+ 		ignorehitpause = 1
+
+[State 200,V1=1]
+		Type=VarSet
+		Trigger1=MoveContact
+		var(1)=1
+		ignorehitpause = 1
+
 [State 1000, ChangeState]
 type = ChangeState
 trigger1 = AnimTime = 0
 value = 0
 ctrl = 1
 
-;Pull in
+;Wire pull in
 [Statedef 1410]
 type    = S
 movetype= A
@@ -1380,13 +2078,277 @@ anim = 1410
 ctrl = 0
 poweradd = fvar(11)
 
+[State 200,V1=0]
+Type=VarSet
+Trigger1=time=0
+var(1)=0
+
+[State -1,îƒópäiî[]
+		type = Varset
+		Trigger1=Time=0
+		fvar(10)= fvar(0)
+		persistent = 0
+ 		ignorehitpause = 1
+
+	[State -1,ç≈í·çUåÇï€è·]
+		type = Varset
+		Trigger1=Time=0
+		Trigger1=fvar(0)<=0.15
+		fvar(10)= 0.15
+		persistent = 0
+ 		ignorehitpause = 1
+
+[State 0, Explod]
+type = Explod
+trigger1 = animelem=2
+anim = 1405
+ID = 1405
+pos = -10,-50
+postype = p1  ;p2,front,back,left,right
+facing = 1
+vfacing = 1
+bindtime = 1
+vel = 0,0
+accel = 0,0
+random = 0,0
+removetime = -2
+pausemovetime = 0
+scale = 1,1
+sprpriority = 5
+ontop = 0
+shadow = 0,0,0
+ownpal = 1
+removeongethit = 0
+;ignorehitpause =
+;trans = 
+;persistent =
+;supermove = 0
+;pausemove = 0
+
+[State 0, VarSet]
+type = VarSet
+trigger1 = animtime = 0
+var(20) = 0
+;ignorehitpause = 
+;persistent = 
+
+[State 0, VarSet]
+type = VarSet
+trigger1 = animtime = 0
+var(21) = var(20)
+;ignorehitpause = 
+;persistent = 
+
+[State 0, VarSet]
+type = VarSet
+trigger1 = time=0
+var(22) = 1
+;ignorehitpause = 
+;persistent = 
+
+[State 1010, Hit]
+type = hitdef
+triggerall=!movecontact && !movereversed
+trigger1 = time=0
+attr = S, SA
+hitflag = MAF
+guardflag = MA
+priority = 4, Hit
+damage = ceil(40*fvar(10)), 4
+;getPower = ifElse(!var(13), 36, 18) * (!var(20)&&!var(53)), 10 * (!var(20)&&!var(53))
+;givePower = 18, 18
+pausetime = 12,12
+animType = Hard
+air.animType = Back
+fall.animType = Back
+ground.type = High
+air.type = Low
+ground.hittime = 12
+ground.slidetime = 12
+guard.hittime = 12
+air.hittime = 120
+ground.velocity = 4.09, -6.24
+guard.velocity = 6.09
+air.velocity = 4.01, -6.24
+yaccel = 0.58
+fall = 1
+fall.recover = 0
+fall.recovertime = 120;37
+forcestand = 1
+sparkno = S6001
+guard.sparkno = S6100
+sparkxy = -10,-20
+HitSound=S20,0                  ;Sound to play on hit
+GuardSound=S120,0                ;Sound to play on guard
+ground.cornerpush.veloff = -fvar(11)*0.444
+Air.cornerpush.veloff= -fvar(11)*0.444
+
 [State 1010, StateTypeSet: Idle]
 type = StateTypeSet
 trigger1 = AnimElemTime(3) >= 0
 moveType = I
+
+	[State -1,çUåÇï‚ê≥,è„èëÇ´,ÉJÉEÉìÉ^Å[]
+		type =Varset
+		Trigger1=MoveHit=1
+		;trigger1=animelemtime(9)>=0
+		fvar(0)= fvar(0)*0.85
+		persistent = 0
+ 		ignorehitpause = 1
+
+[State 200 ÉmÉbÉNÉoÉbÉNÉJÉEÉìÉg]
+		type = Varadd
+		trigger1 = movehit
+		;trigger1=animelemtime(9)>=0
+		fVar(11) = 3
+		persistent = 0
+ 		ignorehitpause = 1
+
+
+[State 200,V1=1]
+		Type=VarSet
+		Trigger1=MoveContact
+		var(1)=1
+		ignorehitpause = 1
 
 [State 1010, ChangeState]
 type = ChangeState
 trigger1 = AnimTime = 0
 value = 0
 ctrl = 1
+
+;Wires
+[Statedef 1500]
+type    = S
+movetype= A
+physics = S
+velset = 0,0
+ctrl = 0
+poweradd = fvar(11)
+
+[State 200,V1=0]
+		Type=VarSet
+		Trigger1=time=0
+		var(1)=0
+
+[State -1,îƒópäiî[]
+		type = Varset
+		Trigger1=Time=0
+		fvar(10)= fvar(0)
+		persistent = 0
+ 		ignorehitpause = 1
+
+	[State -1,ç≈í·çUåÇï€è·]
+		type = Varset
+		Trigger1=Time=0
+		Trigger1=fvar(0)<=0.10
+		fvar(10)= 0.10
+		persistent = 0
+ 		ignorehitpause = 1
+
+[State 210, 3]
+type = Helper
+trigger1 = animelemtime(4) = 0
+helpertype = Normal
+name = "Wire attack"
+id = anim ;+ (root, var(11))
+pos = 50+100*(anim-1500),-100
+postype = p1
+stateno = 1505
+ownpal = 1
+size.xscale = 0.75
+size.yscale = 0.75
+
+[State 1010, ChangeState]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;Icy night wind
+[Statedef 1600]
+type    = S
+movetype= A
+physics = S
+velset = 15,0
+anim = 1600                       ;Change animation (Def: no change)
+ctrl = 0
+poweradd = fvar(11)
+
+[State 0, VarSet]
+type = VarSet
+trigger1 = time=0
+var(1) = 0
+
+[State 1000, VelSet]
+Type = null
+Trigger1 = AnimElemtime(2)>= 0
+x = .6
+
+[State 0, Helper]
+type = Helper
+trigger1 = animelem = 2
+helpertype = normal ;player
+name = "icy night wind"
+ID = 1605
+stateno = 1605
+pos = 80,100
+postype = p1    ;p2,front,back,left,right
+facing = 1
+keyctrl = 0
+ownpal = 1
+supermovetime = 0
+pausemovetime = 0
+
+[State 1010, ChangeState]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+
+;---------------------------------------------------------------------------
+;Slow down zone
+[Statedef 1610]
+type    = A
+physics = A
+ctrl = 0
+anim = 105
+sprpriority = 1
+
+[State 200,V1=0]
+		Type=VarSet
+		Trigger1=time=0
+		var(1)=0
+
+[State 105, 1]
+type = VelSet
+trigger1 = Time = 0
+x = const(velocity.run.back.x)*(1+0.25*(var(20)=1 || (var(20)=0 && var(21)=1)))*1.5
+y = const(velocity.run.back.y)*(1+0.25*(var(20)=4 || (var(20)=0 && var(21)=4)))
+
+[State 0, Helper]
+type = Helper
+trigger1 = numhelper(1615)<=1
+trigger1 = time = 5
+helpertype = normal ;player
+name = "slow zone"
+ID = 1615
+stateno = 1615 
+pos = 0,0
+postype = back    ;p2,front,back,left,right
+facing = 1
+keyctrl = 0
+ownpal = 1
+supermovetime = 0
+pausemovetime = 0
+size.xscale = 0.5
+size.yscale = 0.5
+
+
+
+[State 105, 3]
+type = ChangeState
+trigger1 = Vel Y > 0
+trigger1 = Pos Y >= 0
+value = 106

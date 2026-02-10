@@ -223,7 +223,14 @@ value = 0
 type = DisplayToClipboard
 trigger1 = 1
 text = "fvar(10) = %f, fvar(0)=%f, facing = %d, life = %d, vel x = %f"
-params = fvar(11),fvar(0),var(16),sysvar(1), vel x
+params = fvar(10),fvar(0),playerno,sysvar(1), 1.+0.5*(var(20)=3 || (var(20)=0 && var(21)=3))+0.5*(numhelper(24013)>0)
+;ignorehitpause = 
+;persistent = 
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = stateno != [850,851]
+id = 10850
 ;ignorehitpause = 
 ;persistent = 
 
@@ -249,7 +256,7 @@ IgnoreHitPause = 1
 [State 0, AttackMulSet]
 type = AttackMulSet
 trigger1 = 1
-value = ifelse(var(20)=3 || (var(20)=0 && var(21)=3),1.5,1)
+value = 1.+0.25*(var(20)=3 || (var(20)=0 && var(21)=3))+0.25*(numhelper(24013)>0)
 ;ignorehitpause = 
 ;persistent = 
 
@@ -392,6 +399,95 @@ Type = VarSet
 Trigger1 = Command != "holdup" && Command != "holddown" && Command != "holdfwd" && Command != "holdback"
 IgnoreHitPause = 1
 sysvar(4) = 0
+
+;------------------------------------------------------------------------------------------
+;‰¡‚Á”ò‚ÑŒƒ“Ëƒ{ƒCƒX
+[State -2]
+Type = Helper
+Trigger1 = helper(1605),NumHelper(5605) = 0
+Trigger1 = helper(1605),NumTarget(5600) > 0
+Trigger1 = helper(1605),Target(5600),Time = 1
+Trigger1 = helper(1605),Target(5600),StateNo = 5602 || helper(1605),Target(5600),StateNo = 5603; || Target(5600),StateNo = 5632 || Target(5600),StateNo = 5633
+StateNo = 5605
+PosType = P1
+Pos = 0, 0
+Ownpal = 0
+ID = 5605
+
+[State -2]
+Type = Explod
+Trigger1 = helper(1605),NumTarget(5600) > 0
+Trigger1 = helper(1605),Target(5600),Time >= 4
+Trigger1 = helper(1605),Target(5600),Time%6 = 4
+Trigger1 = helper(1605),Target(5600),StateNo = 5601 || helper(1605),Target(5600),StateNo = 5631
+Trigger1 =helper(1605), Target(5600),Pos Y >= -45
+Anim = 15602
+ID = 15602
+Postype = P2
+Pos = 0,-Ceil(Target(5600),Pos Y)
+Scale = 0.5,0.5
+Facing = -1
+Ownpal = 1
+SprPriority = 3
+IgnoreHitPause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2]
+Type = Explod
+Trigger1 = helper(1605),NumTarget(5600) > 0
+Trigger1 = helper(1605),Target(5600),Time >= 4
+Trigger1 = helper(1605),Target(5600),Time%6 = 4
+Trigger1 = helper(1605),Target(5600),StateNo = 5601 || helper(1605),Target(5600),StateNo = 5631
+Trigger1 = helper(1605),Target(5600),Pos Y >= -45
+Anim = 15600
+ID = 15600
+Postype = P2
+Pos = 0,-Ceil(Target(5600),Pos Y)
+Scale = 0.5,0.5
+Facing = -1
+Ownpal = 1
+SprPriority = 3
+IgnoreHitPause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2]
+Type = Explod
+Trigger1 = NumTarget(5600) > 0
+Trigger1 = Var(44) = 0
+Trigger1 = Target(5600),Time >= 4
+Trigger1 = Target(5600),Time%6 = 4
+Trigger1 = Target(5600),StateNo = 5601 || Target(5600),StateNo = 5631
+Trigger1 = Target(5600),Pos Y >= -45
+Anim = 15601
+ID = 15601
+Postype = P2
+Pos = 0,-Ceil(Target(5600),Pos Y)
+Scale = 0.5,0.5
+Facing = -1
+Ownpal = 1
+SprPriority = 3
+IgnoreHitPause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+
+;---------------------------------------------------------------------------
+; States that are executed when in self's state file (use statedef -3)
+;---------------------------------------------------------------------------
+
+[Statedef -3]
+
+;This controller plays a sound everytime KFM lands from a jump, or
+;from his back-dash.
+[State -3, Landing Sound]
+type = PlaySnd
+triggerall = Time = 1
+trigger1 = stateno = 52 ;Jump land
+trigger2 = stateno = 106 ;Run-back land
+trigger3 = stateno = 1051 ;Lunge land
+value = 105, 0
 
 
 ;var(16) is special jump chooser

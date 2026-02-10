@@ -6242,6 +6242,10 @@ Anim = 9999
 SprPriority = 4
 VelSet = 0,0
 
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = time<=30
+flag = nobardisplay
 
 [State 0, VarSet]
 type = parentVarSet

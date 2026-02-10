@@ -706,7 +706,7 @@ persistent = 1
 
 [State 0, RemoveExplod]
 type = RemoveExplod
-trigger1 = stateno != 850
+trigger1 = stateno != [850,851]
 id = 10850
 ;ignorehitpause = 
 ;persistent = 

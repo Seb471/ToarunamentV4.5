@@ -1097,7 +1097,6 @@ trigger5 = stateno = [2200,2230]
 	TriggerAll = command = "hold_a"
 	TriggerAll = command = "hold_c"
 	TriggerAll = Power < PowerMax
-	;triggerall = var(20)=0
 	trigger1 = ctrl
 ;---------------------------------------------------------------------------
 [State -1, 5a st0]

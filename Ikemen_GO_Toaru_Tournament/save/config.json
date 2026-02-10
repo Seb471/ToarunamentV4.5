@@ -30,7 +30,9 @@
 		"data/mods/lifelead.zss",
 		"data/mods/mixed.zss",
 		"data/mods/adv-guard.zss",
-		"data/mods/cancel-assault.zss"
+		"data/mods/cancel-assault.zss",
+		"data/mods/attackdata/attackdata-modified.zss",
+		"data/mods/inputdisplay.zss"
 	],
 	"ControllerStickSensitivity": 0.4,
 	"Credits": 10,

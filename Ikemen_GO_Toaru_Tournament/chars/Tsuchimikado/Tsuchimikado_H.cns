@@ -908,12 +908,6 @@ sprpriority = 2
 		value=2200,1
 		channel=0
 
-[State 2000,SE]
-		Type=playSnd
-		Trigger1=time=0
-		value=1,13
-		channel=-1
-
 [State -1,”Ä—pŠi”[]
 		type = Varset
 		Trigger1=Time=0

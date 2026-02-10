@@ -2523,6 +2523,325 @@ trigger1 = SelfAnimExist(5500)
 value = 5500
 
 ;---------------------------------------------------------------------------
+; getting wall bounced
+[Statedef 5599];it's put to 5599 because 5600 is used for switch
+Type     = A
+MoveType = H
+Physics  = N
+Ctrl     = 0
+VelSet   = 0,0
+
+[State -1]
+Type = PosSet
+Trigger1 = Pos Y > 0
+Y = 0
+Persistent = 0
+
+[State -1]
+Type = HitFallSet
+Trigger1 = 1
+Value = 0
+Persistent = 0
+
+[State -1]
+Type = OffSet
+Trigger1 = Time >= 0
+X = 1
+Persistent = 4
+
+[State -1]
+Type = OffSet
+Trigger1 = Time >= 2
+X = -1
+Persistent = 4
+
+[State -1]
+Type = ChangeAnim
+TriggerAll = SelfAnimExist(5030)
+Trigger1 = 1
+Value = 5030
+
+[State -1]
+Type = ChangeState
+Trigger1 = GetHitVar(HitShakeTime) = 0
+Value = 5601
+
+;---------------------------------------------------------------------------
+; •Ç’@‚«•t‚¯@‚Q
+[Statedef 5601]
+Type     = A
+MoveType = H
+Physics  = N
+Ctrl     = 0
+VelSet   = 0,0
+
+[State -1]
+Type = PlayerPush
+Trigger1 = Time >= 0
+Value = 0
+Persistent = 1
+
+[State -1]
+Type = Width
+Trigger1 = 1
+Edge = 0,-Const(Size.Air.Back)
+
+[State -1] 
+Type = VelSet
+Trigger1 = Time = 0
+X = -11
+
+[State -1]
+Type = ChangeAnim
+TriggerAll = SelfAnimExist(5030)
+Trigger1 = Time = 0
+Value = 5030
+
+[State -1]
+Type = ChangeAnim
+TriggerAll = SelfAnimExist(5035)
+Trigger1 =! SelfAnimExist(5030)
+Trigger1 = Time = 0
+Trigger2 = Anim = 5030
+Trigger2 = AnimTime = 0
+Value = 5035
+
+[State -1]
+Type = ChangeAnim
+TriggerAll = SelfAnimExist(5050)
+Trigger1 =! SelfAnimExist(5030)
+Trigger1 =! SelfAnimExist(5035)
+Trigger1 = Time = 0
+Trigger2 = Anim = 5030
+Trigger2 = AnimTime = 0
+Trigger3 = Anim = 5035
+Trigger3 = AnimTime = 0
+Value = 5050
+
+[State -1]
+Type = ScreenBound
+Trigger1 = Time <= 29
+Value = 1
+MoveCamera = 1,1
+
+[State -1]
+Type = ScreenBound
+Trigger1 = Time > 29
+Value = 1
+MoveCamera = 0,1
+
+[State -1]
+Type = ChangeState
+TriggerAll = Time = [0,11]
+TriggerAll = BackEdgeDist <= 0
+Trigger1 = 1
+Value = 5602
+
+[State -1]
+Type = ChangeState
+TriggerAll = Time >= 12
+TriggerAll = BackEdgeDist <= 0
+Trigger1 = 1
+Value = 5603
+
+;---------------------------------------------------------------------------
+; •Ç’@‚«•t‚¯@‚R
+[Statedef 5602]
+Type     = A
+MoveType = H
+Physics  = N
+Ctrl     = 0
+VelSet   = 0,0
+
+[State -1]
+Type = Width
+Trigger1 = Time = [0,9]
+Edge = -Const(Size.Air.Front),-Const(Size.Air.Back)
+
+[State -1]
+Type = Width
+Trigger1 = Time >= 10
+Trigger1 = Const(Size.Air.Back)-(Time-9) > 0
+Edge = 0,-Const(Size.Air.Back)+(Time-9)
+
+[State -1]
+Type = HitFallSet
+Trigger1 = Vel Y > 0
+Trigger1 = Pos Y >= -25
+Trigger2 = Vel Y > 5
+Value = 1
+Persistent = 0
+
+[State -1]
+Type = SelfState
+TriggerAll = Vel Y > 0
+TriggerAll = Pos Y >= -25
+TriggerAll = Alive
+TriggerAll = CanRecover
+Trigger1 = Command != "holddown" && Command != "holdup"
+Trigger1 = Command = "fwd" || Command = "back" || Command = "holdfwd" || Command = "holdback"
+Trigger2 = Command != "holddown" && Command != "holdfwd" && Command != "holdback"
+Trigger2 = Command = "up" || Command = "holdup"
+Value = 5200
+
+[State -1]
+Type = SelfState
+TriggerAll = Vel Y > 5
+TriggerAll = Pos Y < -25
+TriggerAll = Alive
+TriggerAll = CanRecover
+Trigger1 = Command = "recovery" || Command = "a" || Command = "b" || Command = "c" || Command = "x" || Command = "y" || Command = "z"
+Value = 5210
+
+[State -1]
+Type = ChangeAnim
+TriggerAll = SelfAnimExist(5030)
+Trigger1 = Time = [0,7]
+Value = 5030
+
+[State -1]
+Type = ChangeAnim
+TriggerAll = SelfAnimExist(5035)
+Trigger1 =! SelfAnimExist(5030)
+Trigger1 = Time = [0,7]
+Trigger2 = Anim = 5030
+Trigger2 = AnimTime = 0
+Value = 5035
+
+[State -1]
+Type = ChangeAnim
+TriggerAll = SelfAnimExist(5050)
+Trigger1 =! SelfAnimExist(5030)
+Trigger1 =! SelfAnimExist(5035)
+Trigger1 = Time = [0,7]
+Trigger2 = Anim = 5030
+Trigger2 = AnimTime = 0
+Trigger3 = Anim = 5035
+Trigger3 = AnimTime = 0
+Value = 5050
+
+[State -1]
+Type = EnvShake
+Trigger1 = Time = 0
+Time  = 10
+Ampl  = 6
+Freq  = 90
+
+[State -1]
+Type = VelSet
+Trigger1 = Time = 8
+X = 1.0
+Y = -7
+
+[State -1]
+Type = VelAdd
+Trigger1 = Time >= 9
+Y = .5
+
+[State -1]
+Type = SelfState
+Trigger1 = (Vel Y > 0) && (Pos Y >= 0)
+Value = 5100
+
+;---------------------------------------------------------------------------
+; •Ç’@‚«•t‚¯@‚S
+[Statedef 5603]
+Type     = A
+MoveType = H
+Physics  = N
+Ctrl     = 0
+VelSet   = 0,0
+
+[State -1]
+Type = Width
+Trigger1 = Time = [0,9]
+Edge = -Const(Size.Air.Front),-Const(Size.Air.Back)
+
+[State -1]
+Type = Width
+Trigger1 = Time >= 10
+Trigger1 = Const(Size.Air.Back)-(Time-9) > 0
+Edge = 0,-Const(Size.Air.Back)+(Time-9)
+
+[State -1]
+Type = SelfState
+TriggerAll = Time >= 7
+TriggerAll = Vel Y > 0 && Pos Y >= -20
+TriggerAll = Alive
+TriggerAll = CanRecover
+Trigger1 = Command != "holddown" && Command != "holdup"
+Trigger1 = Command = "fwd" || Command = "back" || Command = "holdfwd" || Command = "holdback"
+Trigger2 = Command != "holddown" && Command != "holdfwd" && Command != "holdback"
+Trigger2 = Command = "up" || Command = "holdup"
+Value = 5200
+
+[State -1]
+Type = SelfState
+TriggerAll = Time >= 7
+TriggerAll = Pos Y < -20
+TriggerAll = Alive
+TriggerAll = CanRecover
+Trigger1 = Command = "recovery" || Command = "a" || Command = "b" || Command = "c" || Command = "x" || Command = "y" || Command = "z"
+Value = 5210
+
+[State -1]
+Type = ChangeAnim
+TriggerAll = SelfAnimExist(5030)
+Trigger1 = Time = [0,7]
+Value = 5030
+
+[State -1]
+Type = ChangeAnim
+TriggerAll = SelfAnimExist(5035)
+Trigger1 =! SelfAnimExist(5030)
+Trigger1 = Time = [0,7]
+Trigger2 = Anim = 5030
+Trigger2 = AnimTime = 0
+Value = 5035
+
+[State -1]
+Type = ChangeAnim
+TriggerAll = SelfAnimExist(5050)
+Trigger1 =! SelfAnimExist(5030)
+Trigger1 =! SelfAnimExist(5035)
+Trigger1 = Time = [0,7]
+Trigger2 = Anim = 5030
+Trigger2 = AnimTime = 0
+Trigger3 = Anim = 5035
+Trigger3 = AnimTime = 0
+Value = 5050
+
+[State -1]
+Type = EnvShake
+Trigger1 = Time = 0
+Time  = 10
+Ampl  = 6
+Freq  = 90
+
+[State -1]
+Type = VelSet
+Trigger1 = Time = 8
+X = 1.0
+Y = -7
+
+[State -1]
+Type = VelAdd
+Trigger1 = Time >= 9
+Y = .5
+
+[State -1]
+Type = HitFallSet
+TriggerAll = Time = 8
+Trigger1 = 1
+Value = 1
+Persistent = 0
+
+[State -1]
+Type = SelfState
+Trigger1 = (Vel Y > 0) && (Pos Y >= 0)
+Value = 5100
+
+;---------------------------------------------------------------------------
 ; Initialize (at the start of the round)
 [Statedef 5900]
 type = S

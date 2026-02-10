@@ -22,5 +22,6 @@ st1	= itsuwa_N.cns
 st2	= itsuwa_S.cns
 st3	= itsuwa_H.cns
 st4	= itsuwa_Helper.cns
+st5	= itsuwa_ex.cns
 stcommon= common.cns
 movelist= itsuwa.dat

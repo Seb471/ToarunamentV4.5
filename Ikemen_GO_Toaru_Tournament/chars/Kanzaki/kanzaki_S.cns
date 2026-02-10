@@ -46,8 +46,8 @@ var(25) = 1
 [State 0, SuperPause]
 type = SuperPause
 trigger1 = animelem=5
-time = 9+34
-movetime = 9+34
+time = 9+30
+movetime = 9+30
 anim = -1
 sound = -1
 pos = 0,0
@@ -73,7 +73,7 @@ sinadd = -256,-256,-256,36
 [State 0, BGPalFX]
 type = BGPalFX
 trigger1 = animelem = 8
-time = 34
+time = 30
 add = -256,-256,-256
 ;mul = 256,256,256
 ;sinadd = 0,0,0,10
@@ -156,7 +156,7 @@ postype = p1    ;p2,front,back,left,right
 facing = 1
 keyctrl = 0
 ownpal = 0
-supermovetime = 34
+supermovetime = 30
 pausemovetime = 0
 
 [State 0, Helper]
@@ -176,7 +176,7 @@ pausemovetime = 0
 
 [State 0, Helper]
 type = Helper
-trigger1 = animelemtime(8) = 34
+trigger1 = animelemtime(8) = 30
 helpertype = normal ;player
 name = "slash"
 ID = 923
@@ -263,8 +263,8 @@ var(25) = 1
 [State 0, SuperPause]
 type = SuperPause
 trigger1 = animelem=2
-time = 34
-movetime = 34
+time = 30
+movetime = 30
 anim = -1
 sound = -1
 pos = 0,0
@@ -290,7 +290,7 @@ sinadd = -256,-256,-256,12
 [State 0, BGPalFX]
 type = BGPalFX
 trigger1 = animelem = 2
-time = 34
+time = 30
 add = -256,-256,-256
 ;mul = 256,256,256
 ;sinadd = 0,0,0,10
@@ -354,7 +354,7 @@ absolute = 0
 
 [State 0, Helper]
 type = Helper
-trigger1 = animelemtime(2) = 34
+trigger1 = animelemtime(2) = 30
 helpertype = normal ;player
 name = "slash"
 ID = 923
@@ -662,6 +662,7 @@ anim = 4100
 ctrl = 0
 sprpriority = 0
 facep2 = 1
+poweradd = -2000
 
 
 [State 115,SE]
@@ -673,13 +674,6 @@ value=1,32
 Type=VarSet
 Trigger1=time=0
 var(1)=0
-
-[state ]
-type = poweradd
-trigger1 = time = 0
-value = -2000
-ignorehitpause = 1
-persistent = 0
 
 
 [State 0, VarSet]
@@ -699,7 +693,7 @@ var(25) = 0
 [State 0, SuperPause]
 type = SuperPause
 trigger1 = animelem=1
-time = 35+34
+time = 35+30
 movetime = 35
 anim = -1
 sound = -1
@@ -726,7 +720,7 @@ sinadd = -256,-256,-256,128
 [State 0, BGPalFX]
 type = BGPalFX
 trigger1 = animelemtime(1) = 32
-time = 3+34
+time = 3+30
 add = -256,-256,-256
 ;mul = 256,256,256
 ;sinadd = -256,-256,-256,128
@@ -769,7 +763,7 @@ p2stateno     = 1515
 
 [State ]
 type = ChangeState
-trigger1 = time = 35+34+60
+trigger1 = time = 35+30+60
 value = 1505
 ctrl = 0
 
@@ -784,18 +778,12 @@ anim = 4103
 ctrl = 0
 sprpriority = 0
 facep2 = 1
+poweradd = -2000
 
 [State 200,V1=0]
 Type=VarSet
 Trigger1=time=0
 var(1)=0
-
-[state ]
-type = poweradd
-trigger1 = time = 0
-value = -2000
-ignorehitpause = 1
-persistent = 0
 
 [State ]
 type = HitBy
@@ -1506,7 +1494,7 @@ var(25) = 0
 [State 0, SuperPause]
 type = SuperPause
 trigger1 = animelem=1
-time = 35+34
+time = 35+30
 movetime = 35
 anim = -1
 sound = -1
@@ -1533,7 +1521,7 @@ sinadd = -256,-256,-256,128
 [State 0, BGPalFX]
 type = BGPalFX
 trigger1 = animelemtime(1) = 32
-time = 3+34
+time = 3+30
 add = -256,-256,-256
 ;mul = 256,256,256
 ;sinadd = -256,-256,-256,128
@@ -1736,7 +1724,7 @@ var(1)=0
 [State 0, SuperPause]
 type = SuperPause
 trigger1 = animelem=1
-time = 34
+time = 30
 anim = -1
 sound = -1
 pos = 0,0
@@ -1753,7 +1741,7 @@ unhittable = 1
 type = bgpalfx
 trigger1 = animelem=1
 add = -256,-256,-256
-time = 34
+time = 30
 ;under = 1 
 
 [State ]
@@ -2800,7 +2788,7 @@ type = PlaySnd
 triggerall = time >= 4
 triggerall = var(38)<=3 || (power>=333 && var(38)>3)
 trigger1 = command = "a" && command != "b" && command != "c"
-value = 850, 0
+value = 1850, 0
 channel = 2+(time%8)
 
 [State 220, Voice]
@@ -2808,7 +2796,7 @@ type = PlaySnd
 triggerall = time >= 4
 triggerall = var(38)<=3 || (power>=333 && var(38)>3)
 trigger1 = command != "a" && command = "b" && command != "c"
-value = 850, 1
+value = 1850, 1
 channel = 2+(time%8)
 
 [State 220, Voice]
@@ -2816,7 +2804,7 @@ type = PlaySnd
 triggerall = time >= 4
 triggerall = var(38)<=3 || (power>=333 && var(38)>3)
 trigger1 = command != "a" && command != "b" && command = "c"
-value = 850, 2
+value = 1850, 2
 channel = 2+(time%8)
 
 [State ]
@@ -3119,7 +3107,7 @@ ctrl = 0
 [State 0, SuperPause]
 type = SuperPause
 trigger1 = animelem=1
-time = 34
+time = 30
 anim = -1
 sound = -1
 pos = 0,0
@@ -3150,7 +3138,7 @@ unhittable = 1
 type = bgpalfx
 trigger1 = animelem=1
 add = -256,-256,-256
-time = 34
+time = 30
 ;under = 1 
 
 
@@ -3637,7 +3625,7 @@ poweradd = -1000
 [State 0, SuperPause]
 type = SuperPause
 trigger1 = animelem=1
-time = 34
+time = 30
 anim = -1
 sound = -1
 pos = 0,0
@@ -3652,7 +3640,7 @@ unhittable = 1
 type = bgpalfx
 trigger1 = animelem=1
 add = -256,-256,-256
-time = 34
+time = 30
 ;under = 1 
 
 [State ]

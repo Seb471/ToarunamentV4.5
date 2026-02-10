@@ -176,6 +176,31 @@ command = ~D, DF, F, c
 time = 20
 buffer.Time=10
 
+
+[Command]
+name = "[4]]6[_a"
+command = ~35$B, F, a;~45$B, F, a
+time = 20
+buffer.Time=10
+
+[Command]
+name = "[6]]4[_b"
+command = ~35$F, B, b;~45$B, F, b
+time = 20
+buffer.Time=10
+
+[Command]
+name = "[4]]6[_c"
+command = ~35$B, F, c
+time = 20
+buffer.Time=10
+
+[Command]
+name = "[6]]4[_c"
+command = ~35$F, B, c;~45$B, F, b
+time = 20
+buffer.Time=10
+
 [Command]
 name = "623_a"
 command = ~F, D, DF, a
@@ -315,6 +340,41 @@ name = "start"
 command = s
 time = 1
 
+[Command]
+name = "hold_a"
+command = /a
+time = 1
+[Command]
+name = "hold_c"
+command = /c
+time = 1
+[Command]
+name = "hold_y"
+command = /y
+time = 1
+
+;-| Dir |-------------------------------------------------------------------
+
+[command]
+name = "fwd"
+command = F
+time = 0
+
+[command]
+name = "back"
+command = B
+time = 0
+
+[Command]
+name = "up" 
+command = U
+time = 0
+
+[Command]
+name = "down"
+command = D
+time = 0
+
 ;-| Hold Dir |--------------------------------------------------------------
 [Command]
 name = "holdfwd";Required (do not remove)
@@ -396,13 +456,76 @@ trigger2 = stateno = [0,160]
 var(1) = 0
 ignorehitpause=1
 
+;---------------------------------------------------------------------------
+[State -1, (4))6(_c]
+type = ChangeState
+value = 2620
+triggerall = command = "[4]]6[_c"
+triggerall=stateno!=3000
+triggerall=stateno!=2620
+triggerall=power>=1000
+triggerall = statetype!=A
+trigger1=ctrl
+trigger2=var(1)
+
+;---------------------------------------------------------------------------
+[State -1, (6))4(_c]
+type = ChangeState
+value = 2630
+triggerall = command = "[6]]4[_c"
+triggerall=stateno!=3000
+triggerall=stateno!=2630
+triggerall = numhelper(2635)<=1
+triggerall=power>=2000
+triggerall = statetype!=A
+trigger1=ctrl
+trigger2=var(1)
+
+[State -1,214c]
+type = Changestate
+value = 2020
+triggerall = command = "214_c"
+triggerall=stateno!=3000
+triggerall=stateno!=2020
+;triggerall=power>=2000
+triggerall = statetype!=A
+trigger1=ctrl
+trigger2=var(1)
+
+[State -1, 22_abc]
+type = ChangeState
+value = 1500
+triggerall = command = "22_a" || command = "22_b" || command = "22_c"
+triggerall = statetype != A
+trigger1 = ctrl
+trigger2 = var(1) && stateno=[200,499]
+anim = 1500+(command="22_b")+2*(command="22_c")
+
+;---------------------------------------------------------------------------
+[State -1, (4))6(_a]
+type = ChangeState
+value = 1600
+triggerall = command = "[4]]6[_a"
+triggerall = statetype!=A
+trigger1=ctrl
+trigger2 =(StateNo=[200,499]) && var(1)
+
+;---------------------------------------------------------------------------
+[State -1, (6))4(_b]
+type = ChangeState
+value = 1610
+triggerall = command = "[6]]4[_b"
+triggerall = statetype!=A
+trigger1=ctrl
+trigger2 =(StateNo=[200,499]) && var(1)
+
 [State -1, 623_a]
 type = ChangeState
 value = 1400
 triggerall = command = "aab"
 triggerall = statetype != A
 trigger1 = ctrl
-trigger2 = var(1)
+trigger2 = var(1) && stateno=[200,499]
 
 [State -1, 623_a]
 type = ChangeState
@@ -410,7 +533,7 @@ value = 1300
 triggerall = command = "623_a"
 triggerall = statetype != A
 trigger1 = ctrl
-trigger2 = var(1)
+trigger2 = var(1) && stateno=[200,499]
 
 [State -1, 623_b]
 type = ChangeState
@@ -418,7 +541,7 @@ value = 1310
 triggerall = command = "623_b"
 triggerall = statetype != A
 trigger1 = ctrl
-trigger2 = var(1)
+trigger2 = var(1) && stateno=[200,499]
 
 [State -1, 236_a]
 type = ChangeState
@@ -426,7 +549,7 @@ value = 1100
 triggerall = command = "236_a"
 triggerall = statetype != A
 trigger1 = ctrl
-trigger2 = var(1)
+trigger2 = var(1) && stateno=[200,499]
 
 [State -1, 236_b]
 type = ChangeState
@@ -434,7 +557,7 @@ value = 1110
 triggerall = command = "236_b"
 triggerall = statetype != A
 trigger1 = ctrl
-trigger2 = var(1)
+trigger2 = var(1) && stateno=[200,499]
 
 [State -1, 236_a (air)]
 type = ChangeState
@@ -442,7 +565,7 @@ value = 1200
 triggerall = command = "236_a"
 triggerall = statetype = A
 trigger1 = ctrl
-trigger2 = var(1)
+trigger2 = var(1) && stateno=[600,699]
 
 [State -1, 236_b (air)]
 type = ChangeState
@@ -450,7 +573,7 @@ value = 1210
 triggerall = command = "236_b"
 triggerall = statetype = A
 trigger1 = ctrl
-trigger2 = var(1)
+trigger2 = var(1) && stateno=[600,699]
 
 [State -1, 214_a]
 type = ChangeState
@@ -458,7 +581,7 @@ value = 1000
 triggerall = command = "214_a"
 triggerall = statetype != A
 trigger1 = ctrl
-trigger2 = var(1)
+trigger2 = var(1) && stateno=[200,499]
 
 [State -1, 214_b]
 type = ChangeState
@@ -466,7 +589,7 @@ value = 1010
 triggerall = command = "214_b"
 triggerall = statetype != A
 trigger1 = ctrl
-trigger2 = var(1)
+trigger2 = var(1) && stateno=[200,499]
 
 ;---------------------------------------------------------------------------
 [State -1, super fwd air jump]
@@ -486,6 +609,26 @@ Trigger1 = StateType != A
 trigger1 = var(20)=4 || (var(20)=0 && var(21)=4)
 Trigger1 = Ctrl
 
+[State -1, Dodges]
+type = ChangeState
+value = 700+10*command="holdfwd"+15*command="holdback"
+triggerAll = !AILevel
+triggerAll = command = "z"
+triggerAll = StateType != A
+trigger1 = ctrl
+trigger2 = stateno = 1010
+trigger2 = animelemtime(4)>0
+trigger2 = animelemtime(7)<0
+trigger3 = stateno = 1110
+trigger3 = animelemtime(4)>0
+trigger3 = animelemtime(8)<0
+trigger4 = stateno = 1260
+trigger4 = animelemtime(3)>=0
+trigger4 = animelemtime(6)<0
+trigger5 = stateno = 1310
+trigger5 = animelemtime(4)>=0
+trigger5 = animelemtime(10)<0
+
 ;---------------------------------------------------------------------------
 [State -1, dash]
 Type = ChangeState
@@ -500,7 +643,7 @@ Trigger1 = Ctrl
 [State -1, Run Fwd]
 type = ChangeState
 value = 100
-trigger1 = command = "FF"
+trigger1 = command = "FF" || (command = "holdfwd" && command = "y")
 trigger1 = statetype = S
 trigger1 = ctrl
 ;---------------------------------------------------------------------------
@@ -508,7 +651,7 @@ trigger1 = ctrl
 [State -1, Dash Back]
 type = ChangeState
 value = 105
-trigger1 = command = "BB"
+trigger1 = command = "BB" || (command = "holdback" && command = "y")
 trigger1 = statetype = S
 trigger1 = ctrl
 
@@ -516,7 +659,7 @@ trigger1 = ctrl
 	Type=ChangeState
 	value=110
 	TriggerAll = Alive
-	TriggerAll = command="FF"
+	TriggerAll = command="FF" || (command = "holdfwd" && command = "y")
 	TriggerAll = StateType=A
 	TriggerAll = pos Y<=-30+(vel y>0)*20
 	TriggerAll = var(17) < 1
@@ -529,7 +672,7 @@ trigger1 = ctrl
 	Type=ChangeState
 	value=115
 	TriggerAll = Alive
-	TriggerAll = command="BB"
+	TriggerAll = command="BB" || (command = "holdback" && command = "y")
 	TriggerAll = StateType=A
 	TriggerAll = pos Y<=-30+(vel y>0)*20
 	TriggerAll = var(17) < 1
@@ -562,6 +705,14 @@ triggerall = command = "c"
 trigger1 = stateno = 100
 trigger2 = stateno = 108
 
+[State -1, 5a+c]
+	Type=ChangeState
+	value=850
+	TriggerAll = StateType != A
+	triggerall = ((command = "hold_y") || (command = "hold_a" && command = "hold_c")) && !(command =  "holdback" || command = "holdfwd")
+	TriggerAll = Power < PowerMax
+	trigger1 = ctrl
+
 ;---------------------------------------------------------------------------
 [State -1, 6a]
 type = ChangeState
@@ -571,7 +722,7 @@ triggerall = command = "holdfwd"
 triggerall = command != "holddown"
 triggerall = statetype !=A
 trigger1 = ctrl
-trigger2 = StateNo = 200 && (var(1) || animelemtime(3)>=0)
+trigger2 = StateNo = 200 && var(1)
 ;---------------------------------------------------------------------------
 [State -1, 5a]
 type = ChangeState
@@ -589,7 +740,7 @@ triggerall = command = "b"
 triggerall = command != "holddown"
 triggerall = statetype !=A
 trigger1 = ctrl
-trigger2 = StateNo = 200 && var(1)
+trigger2 = (StateNo = [200,205]) && var(1)
 ;---------------------------------------------------------------------------
 [State -1, 5c]
 type = ChangeState
@@ -625,8 +776,7 @@ triggerall = command = "c"
 triggerall = command = "holddown"
 triggerall = statetype = C
 trigger1 = ctrl
-Trigger2 = StateNo = 400 && var(1)
-Trigger3 = StateNo = 410 && var(1)
+Trigger2 = (StateNo = [400,410]) && var(1)
 ;---------------------------------------------------------------------------
 [State -1, j.a]
 type = ChangeState
@@ -650,4 +800,4 @@ value = 620
 triggerall = command = "c"
 triggerall = statetype = A
 trigger1 = ctrl
-trigger2 = stateno = 600 && var(1)
+trigger2 = (stateno = [600,610]) && var(1)

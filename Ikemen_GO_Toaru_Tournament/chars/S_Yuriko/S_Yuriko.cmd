@@ -670,10 +670,21 @@ time = 1
 
 ;------------------------------------------------------------------------------
 ;-| “ÁŽê |---------------------------------------------------------------
-
+[Command]
+name = "up"
+command = $U
+time = 1
 [Command]
 name = "down"
 command = $D
+time = 1
+[Command]
+name = "back"
+command = $B
+time = 1
+[Command]
+name = "fwd"
+command = $F
 time = 1
 
 [Command]

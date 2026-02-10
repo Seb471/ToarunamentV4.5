@@ -813,6 +813,64 @@ Pos = 0, 0
 Ownpal = 0
 ID = 5605
 
+[State -2]
+Type = Explod
+Trigger1 = NumTarget(5600) > 0
+Trigger1 = Var(44) = 0
+Trigger1 = Target(5600),Time >= 4
+Trigger1 = Target(5600),Time%6 = 4
+Trigger1 = Target(5600),StateNo = 5601 || Target(5600),StateNo = 5631
+Trigger1 = Target(5600),Pos Y >= -45
+Anim = 15602
+ID = 15602
+Postype = P2
+Pos = 0,-Ceil(Target(5600),Pos Y)
+Scale = 0.5,0.5
+Facing = -1
+Ownpal = 1
+SprPriority = 3
+IgnoreHitPause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2]
+Type = Explod
+Trigger1 = NumTarget(5600) > 0
+Trigger1 = Target(5600),Time >= 4
+Trigger1 = Target(5600),Time%6 = 4
+Trigger1 = Target(5600),StateNo = 5601 || Target(5600),StateNo = 5631
+Trigger1 = Target(5600),Pos Y >= -45
+Anim = 15600
+ID = 15600
+Postype = P2
+Pos = 0,-Ceil(Target(5600),Pos Y)
+Scale = 0.5,0.5
+Facing = -1
+Ownpal = 1
+SprPriority = 3
+IgnoreHitPause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
+[State -2]
+Type = Explod
+Trigger1 = NumTarget(5600) > 0
+Trigger1 = Target(5600),Time >= 4
+Trigger1 = Target(5600),Time%6 = 4
+Trigger1 = Target(5600),StateNo = 5601 || Target(5600),StateNo = 5631
+Trigger1 = Target(5600),Pos Y >= -45
+Anim = 15601
+ID = 15601
+Postype = P2
+Pos = 0,-Ceil(Target(5600),Pos Y)
+Scale = 0.5,0.5
+Facing = -1
+Ownpal = 1
+SprPriority = 3
+IgnoreHitPause = 1
+SuperMoveTime = 9999
+PauseMoveTime = 9999
+
 ;---------------------------------------------------------------------------
 ;Counter
 ;---------------------------------------------------------------------------

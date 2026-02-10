@@ -1,0 +1,12 @@
+- Training mode attack data x
+- Training mode input display x
+
+- Itsuwa
+- all jabs have facep2 to not have infinites
+- to add alternative half circle inputs
+- fix Yuriko's overhead moves (Enhanced 5C, 2B and 2C) x
+- fix yuriko's back grab
+- fix himegami being stuck from tsuchi's go to sleep
+- nerf kuroko's 236b's hitstun
+- buffed kanzaki's 5c (christian stance) x
+- reduce distance of pushback of kazakiri's grab

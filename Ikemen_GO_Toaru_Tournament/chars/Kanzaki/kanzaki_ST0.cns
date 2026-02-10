@@ -246,7 +246,7 @@ type = HitDef
 triggerall=!movecontact && !movereversed
 trigger1 = time = 0
 attr = S, NA                     ;Attribute: Standing, Normal Attack
-damage = ceil(40*fvar(0)), 0                   ;Damage that move inflicts, guard damage
+damage = ceil(50*fvar(0)), 0                   ;Damage that move inflicts, guard damage
 animtype = Heavy                 ;Animation type: Light, Medium, Heavy, Back (def: Light)
 guardflag = MA                   ;Flags on how move is to be guarded against
 hitflag = MAF                    ;Flags of conditions that move can hit
@@ -684,7 +684,7 @@ triggerall=!movecontact && !movereversed
 trigger1 = animelem=4
 trigger2 = animelem=5
 attr = C, NA
-damage    = ceil(30*fvar(0)),2
+damage    = ceil(30*fvar(0)),3
 animtype  = Hard
 hitflag = MAF
 guardflag = L
@@ -1149,7 +1149,7 @@ type = HitDef
 triggerall=!movecontact && !movereversed
 trigger1 = Time = 0
 attr = A, NA
-damage    = ceil(45*fvar(0)),2
+damage    = ceil(45*fvar(0)),4
 animtype = Medium
 guardflag = HA
 priority = 3

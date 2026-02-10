@@ -992,7 +992,7 @@ value = 5050
 	[State 6500,Snd2]
 		Type=playSnd
 		Trigger1=AnimElemTime(1)=0
-		value=2,6
+		value=850,0
 		channel=0
 
 
@@ -1000,19 +1000,19 @@ value = 5050
 type = ChangeAnim
 trigger1 = animtime=0 && command = "hold_a" && command = "hold_c"
 value = 240
-elem = 5
+elem = 4
 ;ignorehitpause = 
 ;persistent = 
 
 [State 6500, ????????]
 		type = PowerAdd
-		trigger1 = 1 ;animelemtime(5)>=0
+		trigger1 = animelemtime(3) >= 4 ;animelemtime(5)>=0
 		value = 10+time/10
 
 [State -1]
 Type = Explod
 Trigger1 = Anim = 240
-Trigger1 = animelem = 1;4
+Trigger1 = animelemtime(3) = 4;4
 Anim = 10850
 ID = 10850
 Postype = P1
@@ -1028,7 +1028,7 @@ Persistent = 0
 
 [State 6500,Snd2]
 		Type=playSnd
-		Trigger1=animelem = 4
+		Trigger1=animelemtime(3) = 4
 		value=960,0
 		channel=1
 		persistent = 0

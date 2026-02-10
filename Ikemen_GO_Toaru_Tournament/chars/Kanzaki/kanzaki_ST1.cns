@@ -2002,7 +2002,7 @@ channel = -1
 type = HitDef
 trigger1 = Time = 0
 attr = A, NA
-damage    = ceil(60*fvar(0)),2
+damage    = ceil(60*fvar(0)),6
 animtype = heavy
 guardflag = HA
 priority = 3
@@ -2234,7 +2234,7 @@ channel = -1
 type = HitDef
 trigger1 = Time = 0
 attr = A, NA
-damage    = ceil(70*fvar(0)),2
+damage    = ceil(70*fvar(0)),7
 animtype = heavy
 guardflag = HA
 priority = 3
