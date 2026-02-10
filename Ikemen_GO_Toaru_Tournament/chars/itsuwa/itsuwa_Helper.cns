@@ -419,7 +419,7 @@ type = BindToRoot
 trigger1 = ishelper(2626)
 ;time = 1
 ;ID = -1
-pos = enemynear,pos x - root,pos x,root,pos y - enemynear, pos y-60
+pos = -facing *(enemynear,pos x - root,pos x),root,pos y - enemynear, pos y-60
 ;ignorehitpause = 
 ;persistent =
 
