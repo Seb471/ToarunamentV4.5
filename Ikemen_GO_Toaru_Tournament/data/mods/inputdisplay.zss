@@ -65,7 +65,7 @@ ignoreHitPause if (root,command="holdfwd")||(root,command="holdback")||(root,com
 	
 	#;--- button_all
 	#;sys::ki_key_simultaneously ;同時押し判定
-ignoreHitPause if (root,command="x") && !(map(_iksys_trainingInputDisplay1)&262144) || (root,command="y") && !(map(_iksys_trainingInputDisplay1)&524288) || (root,command="z") && !(map(_iksys_trainingInputDisplay1)&1048576) || (root,command="a") && !(map(_iksys_trainingInputDisplay1)&2097152) || (root,command="b") && !(map(_iksys_trainingInputDisplay1)&4194304) || (root,command="c") && !(map(_iksys_trainingInputDisplay1)&8388608) {
+ignoreHitPause if (root,command="x") && !(map(_iksys_trainingInputDisplay1)&262144) || (root,command="y") && !(map(_iksys_trainingInputDisplay1)&524288) || (root,command="z") && !(map(_iksys_trainingInputDisplay1)&1048576) || (root,command="a") && !(map(_iksys_trainingInputDisplay1)&2097152) || (root,command="b") && !(map(_iksys_trainingInputDisplay1)&4194304) || (root,command="c") && !(map(_iksys_trainingInputDisplay1)&8388608) || (root,command="start") && !(map(_iksys_trainingInputDisplay1)&16777216) {
 	mapSet{map: "_iksys_trainingInputDisplay2"; value: ceil(map(_iksys_trainingInputDisplay2))+ ifelse(ceil(map(_iksys_trainingInputDisplay2))>99,100,1) + 10000;} ## ;;30000  ;;(tickspersecond%60)*500 ;; 
 	}
 	#;--- button
@@ -165,6 +165,22 @@ ignoreHitPause if (root,command="c") && !(map(_iksys_trainingInputDisplay1)&8388
 	ownpal: 1
 		}
 	}
+	#;sys::ki_key_s
+ignoreHitPause if (root,command="start") && !(map(_iksys_trainingInputDisplay1)&16777216) {
+	mapSet{map: "_iksys_trainingInputDisplay2"; value: ceil(map(_iksys_trainingInputDisplay2))+100;}
+	explod{
+	id: 112230100 +(ceil(map(_iksys_trainingInputDisplay2))%100);
+	anim: F 230206;
+	ontop: 1;
+	postype: left;
+	bindtime: -1;
+	supermovetime: -1;
+	pausemovetime: -1;
+	scale: $f*0.28*$screen1,$f*0.28*$screen1;
+	pos: $screen2*(teamside=2)+floor((5+map(_iksys_trainingInputDisplay2)/100%100*8)*$screen1)*ifelse(teamside=1,1,-1) , floor((50+(ceil(map(_iksys_trainingInputDisplay2))%100)*8)*$screen1);
+	ownpal: 1
+		}
+	}
 	#;--- Curent_Pos_Y_UnderLine
 ignoreHitPause if numexplod(112230100+(ceil(map(_iksys_trainingInputDisplay2))%100)) && ceil(map(_iksys_trainingInputDisplay2))>9999 {
 	explod{
@@ -196,7 +212,7 @@ if numexplod(112230101 +(ceil(map(_iksys_trainingInputDisplay2))%100)) {removeex
 #;==========================
 #;==========================
 #;; Key Pressed Switch / ボタン開閉
-#;; v08: bit flag (15th-24th,26th)
+#;; v08: bit flag (15th-25th,26th)
 #;;---
 #;sys::ki_switch00
 #;;---
@@ -229,6 +245,9 @@ if (root,command="b") && !(map(_iksys_trainingInputDisplay1)&4194304) {mapSet{ma
 #;;---
 if (map(_iksys_trainingInputDisplay1)&8388608) && (root,command!="c") {mapSet{map: "_iksys_trainingInputDisplay1"; value: (map(_iksys_trainingInputDisplay1)^8388608); }}
 if (root,command="c") && !(map(_iksys_trainingInputDisplay1)&8388608) {mapSet{map: "_iksys_trainingInputDisplay1"; value: (map(_iksys_trainingInputDisplay1)|8388608); }}
+#;;---
+if (map(_iksys_trainingInputDisplay1)&16777216) && (root,command!="start") {mapSet{map: "_iksys_trainingInputDisplay1"; value: (map(_iksys_trainingInputDisplay1)^16777216); }}
+if (root,command="start") && !(map(_iksys_trainingInputDisplay1)&16777216) {mapSet{map: "_iksys_trainingInputDisplay1"; value: (map(_iksys_trainingInputDisplay1)|16777216); }}
 ##;;---
 ##;;--- display flag
 if (map(_iksys_trainingInputDisplay1)&33554432) {mapSet{map: "_iksys_trainingInputDisplay1"; value: (map(_iksys_trainingInputDisplay1)^33554432); }}
